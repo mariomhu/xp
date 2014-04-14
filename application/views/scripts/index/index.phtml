@@ -78,76 +78,15 @@
 					</div>
 					<div class="padding-sm-vr">
 						<ul class="list-group">
-							<li class="list-group-item padding-sm no-border-hr no-border-t">
+							<?php for($i=0; $i<20; $i++) { ?>
+							<li class="list-group-item padding-sm no-border-hr <?php if($i==0) echo "no-border-t"; elseif($i==19) echo "no-border-b"; ?>">
 								<div class="pull-left">
 									<a href="#" title="">Nome Problema</a>
 									<div class="text-slim">por Autor</div>
 								</div>
 								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
 							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr no-border-b">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>
