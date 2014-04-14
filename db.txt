@@ -1,0 +1,72 @@
+estados:
+
+0 In Queue (QU)
+1 julgando
+2 Accepted (AC)
+3 Presentation Error (PE)
+4 Wrong Answer (WA)
+5 Compile Error (CE)
+6 Runtime Error (RE)
+7 Time Limit Exceeded (TL)
+
+usuario
+  id
+  email
+  nome
+  instituicao [5 char]
+  nick
+  senha [md5]
+  ac, pe, wa, ce, re, tl
+
+problema
+  id
+  titulo
+  autor
+  limite
+  oculto
+  ac, pe, wa, ce, re, tl
+  usuarios
+  
+tag
+  id
+  nome
+  
+problema_tag
+  id
+  problema
+  tag
+
+submissao
+  id
+  usuario
+  problema
+  estado
+  data
+  data_juiz
+
+melhor_submisao
+  id
+  usuario
+  problema
+  submisao
+  data
+
+concurso
+  id
+  titulo
+  inicio
+  fim
+  responsavel
+  penalizacao
+  
+concurso_problema
+  id
+  competicao
+  problema
+
+concurso_usuario
+  id
+  competicao
+  usuario
+  
+  
