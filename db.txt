@@ -51,7 +51,7 @@ melhor_submisao
   submisao
   data
 
-concurso
+competicao
   id
   titulo
   inicio
@@ -59,12 +59,12 @@ concurso
   responsavel
   penalizacao
   
-concurso_problema
+competicao_problema
   id
   competicao
   problema
 
-concurso_usuario
+competicao_usuario
   id
   competicao
   usuario
