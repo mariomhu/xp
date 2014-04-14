@@ -1,0 +1,54 @@
+
+- model
+
+PrototipoManagers
+  add(dados[]):void;
+  set(id, dados[]):void;
+  remove(id):void;
+  select():Zend_Db_Select;
+
+UsuarioManager
+  
+ProblemaManager
+  
+TagManager
+  
+ProblemaTagManager
+  removeProblema(idProblema):void();
+
+SubmissaoManager
+
+MelhorSubmissaoManager
+
+CompeticaoManager
+  
+CompeticaoProblemaManager
+  
+CompeticaoUsuarioManager
+
+- controller
+
+Usuario
+  index                   // lista usuarios
+  cadastro                // cadastro usuario com validação
+  alterar/id              // edição usuario do usuario logado
+  remover/id              // remove e redireciona para index (ADM)
+  
+Problema
+  index/[pesquisa]/[tag]  // lista problemas com filtro opcional
+  cadastro                // cadastro de problemas (ADM)
+  alterar/id              // edição de problema
+  remover/id              // remove e redireciona para index (ADM)
+  submeter                // submissao do problema
+  
+Submissao
+  index/
+  usuario/
+  juizGet:JSON
+  juizSet (post)
+  
+Competicao
+  index/
+  placar[id]
+  
+  
