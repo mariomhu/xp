@@ -2,5 +2,3 @@ xp
 ==
 
 xp
-test
-asd
