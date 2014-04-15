@@ -1,53 +1,64 @@
 - model
 
-PrototipoManagers
+Prototipo Managers
   add(dados[]):void;
   set(id, dados[]):void;
   remove(id):void;
   select():Zend_Db_Select;
+  
+UserManager
 
-UsuarioManager
-  
-ProblemaManager
-  
+ProblemManager
+
 TagManager
-  
-ProblemaTagManager
+
+ProblemTagManager
   removeProblema(idProblema):void();
-
-SubmissaoManager
-
-MelhorSubmissaoManager
-
-CompeticaoManager
   
-CompeticaoProblemaManager
-  
-CompeticaoUsuarioManager
+SubmissionManager
+
+BestSubmissionManager
+
+ContestManager
+
+ContestProblemManager
+
+ContestUserManager
 
 - controller
 
-Usuario
+User
   index                   // lista usuarios
-  cadastro                // cadastro usuario com validação
-  alterar/id              // edição usuario do usuario logado
-  remover/id              // remove e redireciona para index (ADM)
+  register                // cadastro usuario com validação
+  edit/id                 // edição usuario do usuario logado
+  remove/id               // remove e redireciona para index (ADM)
+  profile/id              // visualiza o perfil de um usuario
   
-Problema
+Tag
+  index                   // lista todas as tags (ADM)
+  register                // registrea nova tag (ADM)
+  remove/id               // remove e redireciona para index (ADM)
+  edit/id                 // edita uma tag (ADM)
+  
+Problem
   index/[pesquisa]/[tag]  // lista problemas com filtro opcional
-  cadastro                // cadastro de problemas (ADM)
-  alterar/id              // edição de problema
-  remover/id              // remove e redireciona para index (ADM)
-  submeter                // submissao do problema
+  register                // cadastro de problemas (ADM)
+  edit/id                 // edição de problema
+  remove/id               // remove e redireciona para index (ADM)
+  view/id                 // estatisticas, ranking e link da descrição do problema
   
-Submissao
-  index/
-  usuario/
-  juizGet:JSON
-  juizSet (post)
+Submission
+  index                   // lista as ultimas submissões
+  user                    // submisões do usuario
+  rank                    // ranking geral
+  submit/[id]             // submissao do problema, id do problema pode vir por paramentro ou no formulario
+  judgeGet                // acesso do juiz com uma chave enviada por post, retorna uma submissão para julgar
+  judgeSet (post)         // acesso do juiz com uma chave enviada por post, altera o satus de uma submissão
   
-Competicao
-  index/
-  placar[id]
-  
-  
+Contest
+  index                   // lista as competições
+  register                // registra uma competição
+  edit/id                 // edição da competição (Responsavel ou ADM)
+  remove/id               // remove e redireciona para index (Responsavel ou ADM)
+  scoreboard/[id]         // placar da competição
+
