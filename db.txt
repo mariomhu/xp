@@ -9,7 +9,10 @@ estados:
 6 Runtime Error (RE)
 7 Time Limit Exceeded (TL)
 
-usuario
+
+// Falta traduzir as colunas
+
+user
   id
   email
   nome
@@ -18,7 +21,7 @@ usuario
   senha [md5]
   ac, pe, wa, ce, re, tl
 
-problema
+problem
   id
   titulo
   autor
@@ -31,12 +34,12 @@ tag
   id
   nome
   
-problema_tag
+problem_tag
   id
   problema
   tag
 
-submissao
+submission
   id
   usuario
   problema
@@ -44,14 +47,14 @@ submissao
   data
   data_juiz
 
-melhor_submisao
+best_submission
   id
   usuario
   problema
   submisao
   data
 
-competicao
+contest
   id
   titulo
   inicio
@@ -59,12 +62,12 @@ competicao
   responsavel
   penalizacao
   
-competicao_problema
+contest_problem
   id
   competicao
   problema
 
-competicao_usuario
+contest_user
   id
   competicao
   usuario
