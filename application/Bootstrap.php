@@ -2,11 +2,11 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-    protected function _initDoctype()
+    protected function _initBootstrap()
     {
-        $this->bootstrap('view');
-        $view = $this->getResource('view');
-        $view->doctype('XHTML1_STRICT');
+		foreach($_POST as $key=>$value){
+			if($key != "password") $_POST[$key] = htmlspecialchars($value);
+		}
     }
 }
 
