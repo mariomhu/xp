@@ -21,6 +21,7 @@ user
   senha [md5]
   ac, pe, wa, ce, re, tl
   date
+  admin
 
 problem
   id
