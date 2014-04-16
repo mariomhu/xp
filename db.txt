@@ -20,6 +20,8 @@ user
   nick
   senha [md5]
   ac, pe, wa, ce, re, tl
+  date
+  admin
 
 problem
   id
@@ -29,6 +31,7 @@ problem
   oculto
   ac, pe, wa, ce, re, tl
   usuarios
+  date
   
 tag
   id
