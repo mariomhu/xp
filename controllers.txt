@@ -1,31 +1,7 @@
-- model
-
-Prototipo Managers
-  add(dados[]):void;
-  set(id, dados[]):void;
-  remove(id):void;
-  select():Zend_Db_Select;
-  
-UserManager
-
-ProblemManager
-
-TagManager
-
-ProblemTagManager
-  removeProblema(idProblema):void();
-  
-SubmissionManager
-
-BestSubmissionManager
-
-ContestManager
-
-ContestProblemManager
-
-ContestUserManager
-
-- controller
+Index
+  index
+  contact                 // formulario envia e-mail para admin
+  about
 
 User
   index                   // lista usuarios
