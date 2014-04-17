@@ -3,6 +3,11 @@
 class Application_Model_Manager
 {
 
+	public static function add($table, $values){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		return $db->insert($table, $values);
+	}
+	
 	public static function select($table, $where = null, $order = null){
 		$db = Zend_Db_Table::getDefaultAdapter();
 		$select = $db->select()->from($table);
@@ -22,6 +27,17 @@ class Application_Model_Manager
 		$db = Zend_Db_Table::getDefaultAdapter();
 		$select = self::select($table, $where);	
 		return $db->query($select)->fetchAll();
+	}
+	
+	public static function remove($table, $id){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		$db->delete($table, "id = ".intval($id));
+	}
+	
+	public static function set($table, $values, $id){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		foreach($values as $key=>$value) if($value === null) unset($values[$key]);
+		return $db->update($table, $values, "id = ".intval($id));
 	}
 	
 }
