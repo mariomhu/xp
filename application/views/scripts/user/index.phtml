@@ -1,0 +1,67 @@
+<div class="page-header">
+	<h1>User List</h1>
+</div>
+<!-- / .page-header -->
+
+<div class="row">
+	<div class="col-sm-12">
+		<script>
+					init.push(function () {
+						$('#jq-datatables-example').dataTable();
+						$('#jq-datatables-example_wrapper .table-caption').text('Some header text');
+						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+					});
+				</script>
+		<!-- / Javascript -->
+
+		<div class="panel">
+			<div class="panel-heading">
+				<span class="panel-title">jQuery Data Tables</span>
+			</div>
+			<div class="panel-body">
+				<div class="table-primary">
+					<table cellpadding="0" cellspacing="0" border="0"
+						class="table table-striped table-bordered"
+						id="jq-datatables-example">
+						<thead>
+							<tr>
+								<th>Nickname</th>
+								<th>Instituition</th>
+								<th>Register Date</th>
+								<th>Problems Solveds</th>
+								<th>Submitions</th>
+								<th style="width: 150px;">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php for($i = 0; $i < 100; $i++){ ?>
+							<tr class="odd gradeX">
+								<td>Pedro</td>
+								<td>UFFS</td>
+								<td>10/10/2014</td>
+								<td class="center">5</td>
+								<td class="center"><?php echo $i ?></td>
+								<td>
+									<div class="btn-group">
+										<button type="button" class="btn btn-primary">View</button>										
+										<button type="button" class="btn btn-primary dropdown-toggle"
+											data-toggle="dropdown">
+											<i class="fa fa-caret-down"></i>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="#">Edit</a></li>
+											<li><a href="#">Remove</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						<?php }?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
