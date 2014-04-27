@@ -28,10 +28,13 @@
 								},		
 								'finputs': {
 									  required: true,
-									},						
+									  
+								},							
 							},
-							messages: {
-								'jq-validation-policy': 'You must check it!'
+							errorPlacement: function(error, element) {
+								error.addClass("help-block");
+								if (element.attr("name") == "finputs") error.insertAfter(element.parent());
+								else error.insertAfter(element);
 							}
 						});
 					});
