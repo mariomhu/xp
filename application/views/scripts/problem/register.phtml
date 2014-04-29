@@ -10,7 +10,10 @@
 		<script>
 					init.push(function () {
 					
-		
+						// Multiselect
+						$("#users").select2({
+							placeholder: "Select a User"
+						});
 
 						// Setup validation
 						$("#jq-validation-form").validate({
@@ -25,7 +28,10 @@
 								},
 								'description': {
 								  required: true,
-								},		
+								},	
+								'time':{ 
+									required: true,
+								},	
 								'finputs': {
 									  required: true,
 									  
@@ -69,8 +75,16 @@
 					<div class="form-group">
 						<label for="description" class="col-sm-3 control-label">Description</label>
 						<div class="col-sm-7">
-							<textarea class="form-control" rows="30" id="description"
+							<textarea class="form-control" rows="20" id="description"
 								name="description" placeholder="Description"></textarea>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="time" class="col-sm-3 control-label">Time Limit</label>
+						<div class="col-sm-1">
+							<input type="time" class="form-control" id="time" name="time"
+								placeholder="Time">
 						</div>
 					</div>
 
@@ -84,6 +98,43 @@
 						
 						<div class="col-sm-7">
 							<input type="file" id="finputs" name="finputs">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<!-- Multiselect -->
+						<label for="description" class="col-sm-3 control-label">Users</label>
+						<div class="col-sm-7">
+							<select multiple="multiple" id="users" name="users" class="form-control">
+								<optgroup label="Group1">
+									<option value="C1">Classmate1</option>
+									<option value="C2">Classmate2</option>
+								</optgroup>
+								<optgroup label="Group2">
+									<option value="C3">Classmate3</option>
+									<option value="C4">Classmate4</option>
+									<option value="C5">Classmate5</option>
+									<option value="C6">Classmate6</option>
+								</optgroup>
+								<optgroup label="Group3">
+									<option value="C7">Classmate7</option>
+									<option value="C8">Classmate8</option>
+									<option value="C9">Classmate9</option>
+									<option value="C10">Classmate10</option>
+								</optgroup>
+								<optgroup label="Group4">
+									<option value="C11">Classmate11</option>
+									<option value="C12">Classmate12</option>
+									<option value="C13">Classmate13</option>
+									<option value="C14">Classmate14</option>
+								</optgroup>
+								<optgroup label="Group5">
+									<option value="C15">Classmate15</option>
+									<option value="C16">Classmate16</option>
+									<option value="C17">Classmate17</option>
+									<option value="C18">Classmate18</option>
+								</optgroup>
+							</select>
 						</div>
 					</div>
 
