@@ -11,7 +11,8 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
 	
-		
+    	//Application_Model_UserManager::increment("ac", 7);
+    	
 		
     }
 
