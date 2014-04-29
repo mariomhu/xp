@@ -1,7 +1,5 @@
 <div class="page-header">
-	<h1>
-		User Register
-	</h1>
+	<h1>User Register</h1>
 </div>
 <!-- / .page-header -->
 
@@ -9,8 +7,9 @@
 	<div class="col-sm-12">
 		<script>
 					init.push(function () {
-					
-		
+						
+						//Mask
+						$("#birthday").mask("99/99/9999");
 
 						// Setup validation
 						$("#jq-validation-form").validate({
@@ -35,6 +34,9 @@
 								'name': {
 									required: true
 								},
+								'birthday':{
+									required: true,
+								},
 								'nickname': {
 									required: true
 								},
@@ -58,9 +60,7 @@
 				<span class="panel-title">Informations</span>
 			</div>
 			<div class="panel-body">
-				<div class="note note-danger"> 
-					This email is already registered.
-				</div>
+				<div class="note note-danger">This email is already registered.</div>
 
 				<form class="form-horizontal" id="jq-validation-form" method="post">
 					<div class="form-group">
@@ -70,41 +70,47 @@
 								placeholder="Name">
 						</div>
 					</div>
-				
-				
+
+					<div class="form-group">
+						<label for="birthday" class="col-sm-3 control-label">Birthday</label>
+						<div class="col-sm-7">
+							<input type="date" class="form-control form-group-margin"
+								id="birthday" name="birthday">
+						</div>
+					</div>
+
+
 					<div class="form-group">
 						<label for="email" class="col-sm-3 control-label">Email</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="email"
-								name="email" placeholder="Email">
+							<input type="text" class="form-control" id="email" name="email"
+								placeholder="Email">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="nickname" class="col-sm-3 control-label">Nickname</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="nickname" name="nickname"
-								placeholder="Nickname">
+							<input type="text" class="form-control" id="nickname"
+								name="nickname" placeholder="Nickname">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="password" class="col-sm-3 control-label">Password</label>
 						<div class="col-sm-7">
-							<input type="password" class="form-control"
-								id="password" name="password"
-								placeholder="Password">
+							<input type="password" class="form-control" id="password"
+								name="password" placeholder="Password">
 							<p class="help-block">Example block-level help text here.</p>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="password-confirmation"
-							class="col-sm-3 control-label">Confirm password</label>
+						<label for="password-confirmation" class="col-sm-3 control-label">Confirm
+							password</label>
 						<div class="col-sm-7">
 							<input type="password" class="form-control"
-								id="password-confirmation"
-								name="password-confirmation"
+								id="password-confirmation" name="password-confirmation"
 								placeholder="Confirm password">
 							<p class="help-block">Example block-level help text here.</p>
 						</div>
@@ -117,8 +123,6 @@
 								name="instituition" placeholder="Instituition">
 						</div>
 					</div>
-
-					
 
 					<hr class="panel-wide">
 
