@@ -1,40 +1,33 @@
 <?php
 
-class Application_Model_UserManager{
+class Application_Model_UserManager extends Application_Model_Manager{
+	
+	public static $table = "user";
 	
 	public static function add($values){
-		return Application_Model_Manager::add("user", array(
+		return parent::add(array(
 			"name" => $values['name'],
+			"login" => $values['login'],
 			"email" => $values['email'],
 			"institution" => $values['institution'],
-			"nick" => $values['nick'],
+			"nickname" => $values['nickname'],
+			"page" => $values['page'],
 			"password" => $values['password']
 		));
 	}
 	
 	public static function set($values, $id){
-		return Application_Model_Manager::set("user", array(
+		return parent::set(array(
 				"name" => $values['name'],
 				"institution" => $values['institution'],
-				"nick" => $values['nick'],
+				"nickname" => $values['nickname'],
+				"page" => $values['page'],
 				"password" => $values['password']
 		), $id);
 	}
 	
-	public static function select($where = null, $order = null){
-		return Application_Model_Manager::select('user', $where, $order);
-	}
-	
-	public static function get($where){
-		return Application_Model_Manager::get('user', $where = null);
-	}
-
-	public static function getAll($where = null, $order = null){
-		return Application_Model_Manager::getAll('user', $where, $order);
-	}
-
-	public static function remove($id){
-		return Application_Model_Manager::remove('user', $id);
+	public static function getByLogin($login){
+		return parent::get(array("login = ?" => $login));
 	}
 	
 }
