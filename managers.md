@@ -1,4 +1,3 @@
-
 Todos os managers extendem a seguinte classe:
 
 Manager.php
@@ -17,7 +16,8 @@ Parametro opcional $order
   // o nome da coluna em que os registros devem vir ordenados
 
 Exemplos de uso:
-  
+=========
+
 Application_Model_UserManager::add($_POST);
 // insere os dados recebidos por post na tabela user
 
