@@ -5,28 +5,12 @@
 <div class="row">
 	<div class="col-sm-12">
 		<script>
-					init.push(function () {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
-						
-						//Mask
-						$("#birthday").mask("99/99/9999");
-
-<<<<<<< HEAD
-=======
+					init.push(function () {						
 						// Setup validation
-=======
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
 						jQuery.validator.addMethod("alphanumeric", function(value, element) {
 							return this.optional(element) || /^\w+$/i.test(value);
 						}, "Letters, numbers, and underscores only please");
 						
-<<<<<<< HEAD
-=======
->>>>>>> 9a762796afbfe8fae858ad271e34252220ab7b8a
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
 						$("#jq-validation-form").validate({
 							ignore: '.ignore, .select2-input',
 							focusInvalid: false,
@@ -52,9 +36,6 @@
 								},
 								'name': {
 									required: true
-								},
-								'birthday':{
-									required: true,
 								},
 								'nickname': {
 									required: true
@@ -83,20 +64,11 @@
 				<span class="panel-title">Informations</span>
 			</div>
 			<div class="panel-body">
-<<<<<<< HEAD
+
 				<div class="note note-danger">This email is already registered.</div>
 
 				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>			
-				
-=======
-<<<<<<< HEAD
-				<div class="note note-danger">This email is already registered.</div>
 
-=======
-				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>			
-				
->>>>>>> 9a762796afbfe8fae858ad271e34252220ab7b8a
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
 				<form class="form-horizontal" id="jq-validation-form" method="post">
 					<div class="form-group">
 						<label for="name" class="col-sm-3 control-label">Name</label>
@@ -104,30 +76,7 @@
 							<input type="text" class="form-control" id="name" name="name"
 								placeholder="Name" value="<?php echo $_POST["name"]; ?>">
 						</div>
-					</div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
-
-					<div class="form-group">
-						<label for="birthday" class="col-sm-3 control-label">Birthday</label>
-						<div class="col-sm-7">
-							<input type="date" class="form-control form-group-margin"
-								id="birthday" name="birthday">
-						</div>
-					</div>
-
-
-					<div class="form-group">
-						<label for="email" class="col-sm-3 control-label">Email</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="email" name="email"
-								placeholder="Email">
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
+					</div>			
 				
 					<div class="form-group">
 						<label for="login" class="col-sm-3 control-label">Login</label>
@@ -142,54 +91,24 @@
 						<div class="col-sm-7">
 							<input type="text" class="form-control" id="email"
 								name="email" placeholder="Email" value="<?php echo $_POST["email"]; ?>">
-<<<<<<< HEAD
-=======
->>>>>>> 9a762796afbfe8fae858ad271e34252220ab7b8a
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="nickname" class="col-sm-3 control-label">Nickname</label>
 						<div class="col-sm-7">
-<<<<<<< HEAD
-							<input type="text" class="form-control" id="nickname"
-								name="nickname" placeholder="Nickname">
 							<input type="text" class="form-control" id="nickname" name="nickname"
 								placeholder="Nickname" value="<?php echo $_POST["nickname"]; ?>">
-=======
-<<<<<<< HEAD
-							<input type="text" class="form-control" id="nickname"
-								name="nickname" placeholder="Nickname">
-=======
-							<input type="text" class="form-control" id="nickname" name="nickname"
-								placeholder="Nickname" value="<?php echo $_POST["nickname"]; ?>">
->>>>>>> 9a762796afbfe8fae858ad271e34252220ab7b8a
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="password" class="col-sm-3 control-label">Password</label>
 						<div class="col-sm-7">
-<<<<<<< HEAD
-							<input type="password" class="form-control" id="password"
+				<input type="password" class="form-control" id="password"
 								name="password" placeholder="Password">
 							<p class="help-block">Example block-level help text here.</p>
-							<input type="password" class="form-control"
-								id="password" name="password"
-								placeholder="Password">
-=======
-<<<<<<< HEAD
-							<input type="password" class="form-control" id="password"
-								name="password" placeholder="Password">
-							<p class="help-block">Example block-level help text here.</p>
-=======
-							<input type="password" class="form-control"
-								id="password" name="password"
-								placeholder="Password">
->>>>>>> 9a762796afbfe8fae858ad271e34252220ab7b8a
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
+
 						</div>
 					</div>
 
@@ -210,11 +129,6 @@
 								name="institution" placeholder="Institution" value="<?php echo $_POST["institution"]; ?>">
 						</div>
 					</div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
 					
 					<div class="form-group">
 						<label for="page" class="col-sm-3 control-label">Page</label>
@@ -224,11 +138,7 @@
 							<p class="help-block">Example http://twitter.com/mytwitter</p>
 						</div>
 					</div>
-<<<<<<< HEAD
-=======
->>>>>>> 9a762796afbfe8fae858ad271e34252220ab7b8a
 
->>>>>>> 8cbbdf9fcb9267a18c2be774e61452dd6b0d9740
 					<hr class="panel-wide">
 
 					<div class="form-group">
