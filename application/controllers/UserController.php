@@ -7,11 +7,7 @@ class UserController extends Zend_Controller_Action {
 	}
 	
 	public function registerAction() {
-<<<<<<< HEAD
-		//Application_Model_UserManager::select(array('nome = ?' => "teste"))
-		// $select = Application_Model_UserManager::select(array($id));
-		// Application_Model_UserManager::get(4);
-=======
+
 		
 		if(Application_Model_Auth::getUser()) Application_Model_Auth::redirect();
 		
@@ -48,7 +44,6 @@ class UserController extends Zend_Controller_Action {
 		
 		$user = Application_Model_UserManager::getByLogin($login);
 		
->>>>>>> c819ad32bcd17eb6209f748027d84964278b9ca7
 	}
 	
 }
