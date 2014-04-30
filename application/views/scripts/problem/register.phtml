@@ -23,6 +23,9 @@
 								'number': {
 									required: true
 								},
+								'author': {
+									required: true
+								},
 								'name': {
 									required: true
 								},
@@ -56,6 +59,14 @@
 
 				<form class="form-horizontal" id="jq-validation-form" method="post">
 					<div class="form-group">
+						<label for="author" class="col-sm-3 control-label">Author</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="author" name="author"
+								placeholder="Author">
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label for="number" class="col-sm-3 control-label">Number</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" id="number" name="number"
@@ -79,7 +90,7 @@
 								name="description" placeholder="Description"></textarea>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label for="time" class="col-sm-3 control-label">Time Limit</label>
 						<div class="col-sm-1">
@@ -94,18 +105,19 @@
 							init.push(function () {
 								$('#finputs').pixelFileInput({ placeholder: 'No file selected...' });
 							})
-						</script>					
-						
+						</script>
+
 						<div class="col-sm-7">
 							<input type="file" id="finputs" name="finputs">
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<!-- Multiselect -->
 						<label for="description" class="col-sm-3 control-label">Users</label>
 						<div class="col-sm-7">
-							<select multiple="multiple" id="users" name="users" class="form-control">
+							<select multiple="multiple" id="users" name="users"
+								class="form-control">
 								<optgroup label="Group1">
 									<option value="C1">Classmate1</option>
 									<option value="C2">Classmate2</option>
