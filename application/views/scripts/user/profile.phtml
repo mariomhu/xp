@@ -3,35 +3,41 @@
 </div>
 
 <script>
+
 init.push(function () {
 	Morris.Donut({
 		element: 'submissions',
 		data: [
-			{ label: 'Jam', value: 25 },
-			{ label: 'Frosted', value: 40 },
-			{ label: 'Custard', value: 25 },
-			{ label: 'Sugar', value: 10 },
-			{ label: 'Frosted', value: 40 },
-			{ label: 'Custard', value: 25 },
-			{ label: 'Sugar', value: 10 }
+			{ label: 'Accepted', value: <?php echo $this->user['ac']; ?> },
+			{ label: 'Presentation Error', value: <?php echo $this->user['pe']; ?> },
+			{ label: 'Wrong Answer', value: <?php echo $this->user['wa']; ?> },
+			{ label: 'Compile Error', value: <?php echo $this->user['ce']; ?> },
+			{ label: 'Runtime Error', value: <?php echo $this->user['re']; ?> },
+			{ label: 'Time Limit', value: <?php echo $this->user['tl']; ?> }
 		],
 		colors: PixelAdmin.settings.consts.COLORS,
 		resize: true,
 		labelColor: '#888',
-		formatter: function (y) { return y + "%" }
+		formatter: function (y) { 
+			var total = <?php echo $this->submissions; ?>;
+			return y + " ("+(y/total*100).toFixed(2)+"%)"; 
+		}
 	});
 });
 init.push(function () {
 	Morris.Donut({
 		element: 'tried',
 		data: [
-			{ label: 'Solved', value: 25 },
-			{ label: 'Unsolved', value: 40 }
+			{ label: 'Solved', value: <?php echo $this->user['solved']; ?> },
+			{ label: 'Unsolved', value: <?php echo $this->user['tried']-$this->user['solved']; ?> }
 		],
 		colors: PixelAdmin.settings.consts.COLORS,
 		resize: true,
 		labelColor: '#888',
-		formatter: function (y) { return y + "%" }
+		formatter: function (y) { 
+			var total = <?php echo $this->user['tried']; ?>;
+			return y + " ("+(y/total*100).toFixed(2)+"%)"; 
+		}
 	});
 });
 </script>
@@ -43,10 +49,14 @@ init.push(function () {
 		<div
 			class="panel panel-info panel-dark panel-body-colorful widget-profile widget-profile-centered">
 			<div class="panel-heading"  style="height:263px;">
-				<img src="assets/demo/avatars/1.jpg" alt=""
+				<img src="http://www.gravatar.com/avatar/<?php echo md5($this->user[email])?>?d=mm&s=280" alt=""
 					class="widget-profile-avatar" style="width: 140px; height: 140px;">
 				<div class="widget-profile-header">
-					<span>John Doe</span><br><a href="https://twitter.com/test">https://twitter.com/test</a><br>UFFS
+					<?php 
+					echo "<span>{$this->user[name]}</span>";
+					if($this->user['page']) echo "<br><a href='{$this->user[page]}'>{$this->user[page]}</a>";
+					if($this->user['institution']) echo "<br>{$this->user[institution]}";
+					?>
 				</div>
 			</div>
 		</div>
@@ -54,12 +64,16 @@ init.push(function () {
 	</div>
 
 	<div class="col-md-4">
-		<div class="panel panel-info panel-dark">
-			<div class="panel-heading"> <span class="panel-title">10 Submissions</span> 
+		<div class="panel panel-info panel-dark" style="height:265px;">
+			<div class="panel-heading"> <span class="panel-title"><?php echo $this->submissions; ?> Submissions</span> 
 			</div>
 			<div class="panel-body">
-				<div class="graph-container">
-					<div id="submissions" style="height:180px;" class="graph"></div>
+				<div class="graph-container text-center">
+					<?php if($this->submissions) { ?>
+						<div id="submissions" style="height:180px;" class="graph"></div>
+					<?php }else{ ?>
+						<i style="font-size: 120px; color: #EEE; margin-top: 30px" class="fa fa-bar-chart-o"></i>
+					<?php }?>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -67,11 +81,15 @@ init.push(function () {
 	</div>
 	
 	<div class="col-md-4">
-		<div class="panel panel-info panel-dark">
-			<div class="panel-heading"> <span class="panel-title">10 Problems Tried</span> </div>
+		<div class="panel panel-info panel-dark" style="height:265px;">
+			<div class="panel-heading"> <span class="panel-title"><?php echo $this->user['tried']; ?> Problems Tried</span> </div>
 			<div class="panel-body">
-				<div class="graph-container">
-					<div id="tried" style="height:180px;" class="graph"></div>
+				<div class="graph-container text-center">
+					<?php if($this->user['tried']) { ?>
+						<div id="tried" style="height:180px;" class="graph"></div>
+					<?php }else{ ?>
+						<i style="font-size: 120px; color: #EEE; margin-top: 30px" class="fa fa-bar-chart-o"></i>
+					<?php }?>
 				</div>
 				<div class="col-md-4"></div>
 			</div>

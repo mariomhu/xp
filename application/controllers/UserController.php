@@ -4,13 +4,11 @@ class UserController extends Zend_Controller_Action {
 	
 	public function indexAction() {
 	
+		$this->view->users = Application_Model_UserManager::getAll(null, 'name');
+		
 	}
 	
 	public function registerAction() {
-<<<<<<< HEAD
-
-=======
->>>>>>> ed8b8000640306c61c1cae93ba945728e07cf55f
 		
 		if(Application_Model_Auth::getUser()) Application_Model_Auth::redirect();
 		
@@ -46,6 +44,9 @@ class UserController extends Zend_Controller_Action {
 		}
 		
 		$user = Application_Model_UserManager::getByLogin($login);
+		
+		$this->view->submissions = $user['ac']+ $user['pe'] + $user['wa'] + $user['ce'] + $user['re'] + $user['tl'];
+		$this->view->user = $user;
 		
 	}
 	

@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h1>User List</h1>
+	<h1>Users</h1>
 </div>
 
 <div class="row">
@@ -7,16 +7,12 @@
 		<script>
 					init.push(function () {
 						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text('Some header text');
+						$('#jq-datatables-example_wrapper .table-caption').text('Llist All Users');
 						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 					});
 				</script>
-		<!-- / Javascript -->
 
 		<div class="panel">
-			<div class="panel-heading">
-				<span class="panel-title">jQuery Data Tables</span>
-			</div>
 			<div class="panel-body">
 				<div class="table-primary">
 					<table cellpadding="0" cellspacing="0" border="0"
@@ -24,22 +20,23 @@
 						id="jq-datatables-example">
 						<thead>
 							<tr>
-								<th>Nickname</th>
+								<th>Name</th>
 								<th>Instituition</th>
 								<th>Register Date</th>
-								<th>Problems Solveds</th>
-								<th>Submitions</th>
+								<th style="width: 300px;">Problems Solveds</th>
+								<?php if(Application_Model_Auth::isAdmin()) { ?>
 								<th style="width: 150px;">Action</th>
+								<?php } ?>
 							</tr>
 						</thead>
 						<tbody>
-						<?php for($i = 0; $i < 100; $i++){ ?>
+						<?php foreach($this->users as $user){ ?>
 							<tr class="odd gradeX">
-								<td>Pedro</td>
-								<td>UFFS</td>
-								<td>10/10/2014</td>
-								<td class="center">5</td>
-								<td class="center"><?php echo $i ?></td>
+								<td><?php echo $user['name']; ?></td>
+								<td><?php echo $user['institution']; ?></td>
+								<td><?php echo substr($user['date'], 0, 10); ?></td>
+								<td class="center"><?php echo $user['solved']; ?></td>
+								<?php if(Application_Model_Auth::isAdmin()) { ?>
 								<td>
 									<div class="btn-group">
 										<button type="button" class="btn btn-primary">View</button>										
@@ -53,6 +50,7 @@
 										</ul>
 									</div>
 								</td>
+								<?php } ?>
 							</tr>
 						<?php }?>
 						</tbody>

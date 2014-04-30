@@ -10,7 +10,6 @@ class Application_Model_UserManager extends Application_Model_Manager{
 			"login" => $values['login'],
 			"email" => $values['email'],
 			"institution" => $values['institution'],
-			"nickname" => $values['nickname'],
 			"page" => $values['page'],
 			"password" => $values['password']
 		));
@@ -19,8 +18,8 @@ class Application_Model_UserManager extends Application_Model_Manager{
 	public static function set($values, $id){
 		return parent::set(array(
 				"name" => $values['name'],
+				"email" => $values['email'],
 				"institution" => $values['institution'],
-				"nickname" => $values['nickname'],
 				"page" => $values['page'],
 				"password" => $values['password']
 		), $id);
