@@ -24,10 +24,10 @@ Problem
   index/id                // estatisticas, ranking e link da descrição do problema
   
 Submission
-  index                   // lista as ultimas submissões
+  list                    // lista as ultimas submissões
   user                    // submisões do usuario
   rank                    // ranking geral
-  submit/[id]             // submissao do problema, id do problema pode vir por paramentro ou no formulario
+  index/[problem]         // submissao do problema, id do problema pode vir por paramentro ou no formulario
   judgeGet                // acesso do juiz com uma chave enviada por post, retorna uma submissão para julgar
   judgeSet (post)         // acesso do juiz com uma chave enviada por post, altera o satus de uma submissão
   
