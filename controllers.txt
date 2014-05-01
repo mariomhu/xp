@@ -4,11 +4,11 @@ Index
   about
 
 User
-  index                   // lista usuarios
+  list                    // lista usuarios
   register                // cadastro usuario com validação
   edit/id                 // edição usuario do usuario logado
   remove/id               // remove e redireciona para index (ADM)
-  profile/id              // visualiza o perfil de um usuario
+  index/id                // visualiza o perfil de um usuario
   
 Tag
   index                   // lista todas as tags (ADM)
@@ -17,11 +17,11 @@ Tag
   edit/id                 // edita uma tag (ADM)
   
 Problem
-  index/[pesquisa]/[tag]  // lista problemas com filtro opcional
+  list/[pesquisa]/[tag]   // lista problemas com filtro opcional
   register                // cadastro de problemas (ADM)
   edit/id                 // edição de problema
   remove/id               // remove e redireciona para index (ADM)
-  view/id                 // estatisticas, ranking e link da descrição do problema
+  index/id                // estatisticas, ranking e link da descrição do problema
   
 Submission
   index                   // lista as ultimas submissões
@@ -32,9 +32,9 @@ Submission
   judgeSet (post)         // acesso do juiz com uma chave enviada por post, altera o satus de uma submissão
   
 Contest
-  index                   // lista as competições
+  list                    // lista as competições
   register                // registra uma competição
   edit/id                 // edição da competição (Responsavel ou ADM)
   remove/id               // remove e redireciona para index (Responsavel ou ADM)
-  scoreboard/[id]         // placar da competição
+  index/[id]              // placar da competição
 
