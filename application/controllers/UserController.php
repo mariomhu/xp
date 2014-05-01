@@ -7,10 +7,6 @@ class UserController extends Zend_Controller_Action {
 	}
 	
 	public function registerAction() {
-<<<<<<< HEAD
-
-=======
->>>>>>> ed8b8000640306c61c1cae93ba945728e07cf55f
 		
 		if(Application_Model_Auth::getUser()) Application_Model_Auth::redirect();
 		
