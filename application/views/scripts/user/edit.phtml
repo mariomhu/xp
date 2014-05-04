@@ -7,10 +7,6 @@
 		<script>
 					init.push(function () {		
 						
-						jQuery.validator.addMethod("alphanumeric", function(value, element) {
-							return this.optional(element) || /^\w+$/i.test(value);
-						}, "Letters, numbers, and underscores only please");
-						
 						$("#jq-validation-form").validate({
 							ignore: '.ignore, .select2-input',
 							focusInvalid: false,
@@ -19,37 +15,31 @@
 								  required: true,
 								  email: true
 								},
-								'login': {
-								  required: true,
-								  alphanumeric: true,
-								  maxlength: 36
-								},
-								'password': {
-									required: true,
-									minlength: 6,
-									maxlength: 20
-								},
-								'password-confirmation': {
-									required: true,
-									minlength: 6,
-									equalTo: "#password"
-								},
 								'name': {
 									required: true
 								},
 								'institution': {
 									maxlength: 10
 								},
-								'jq-validation-policy': {
-									required: true
-								},
 								'page': {
 									url: true
 								},
+								'password': {
+									minlength: 6,
+									maxlength: 20
+								},
+								'password-confirmation': {
+									minlength: 6,
+									equalTo: "#password"
+								},
+								<?php if(!Application_Model_Auth::isAdmin()){ ?>
+								'current-password': {
+									minlength: 6,
+									maxlength: 20,
+									required: true
+								},
+								<?php } ?>
 								
-							},
-							messages: {
-								'jq-validation-policy': 'You must check it!'
 							}
 						});
 					});
@@ -57,11 +47,11 @@
 
 		<div class="panel">
 			<div class="panel-heading">
-				<span class="panel-title">Sign Up</span>
+				<span class="panel-title">Change User</span>
 			</div>
 			<div class="panel-body">
 
-				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>			
+				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>	
 				<?php if($this->success) { ?>			
 
 					<div id="success" class="modal modal-alert modal-success fade">
@@ -74,15 +64,10 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
 								</div>
-							</div> 
-						</div> 
+							</div> <!-- / .modal-content -->
+						</div> <!-- / .modal-dialog -->
 					</div>
-					<script>
-						init.push(function(){ 
-							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/user/"; });
-							$('#success').modal();
-						});
-					</script>
+					<script>init.push(function(){ $('#success').modal();});</script>
 				<?php } ?>
 				
 				<form class="form-horizontal" id="jq-validation-form" method="post">
@@ -92,14 +77,6 @@
 							<input type="text" class="form-control" id="name" name="name"
 								placeholder="Name" value="<?php echo $_POST["name"]; ?>">
 						</div>
-					</div>			
-				
-					<div class="form-group">
-						<label for="login" class="col-sm-3 control-label">Login</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="login" name="login"
-								placeholder="Login" value="<?php echo $_POST["login"]; ?>">
-						</div>
 					</div>
 				
 					<div class="form-group">
@@ -107,25 +84,6 @@
 						<div class="col-sm-7">
 							<input type="text" class="form-control" id="email"
 								name="email" placeholder="Email" value="<?php echo $_POST["email"]; ?>">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="password" class="col-sm-3 control-label">Password</label>
-						<div class="col-sm-7">
-				<input type="password" class="form-control" id="password"
-								name="password" placeholder="Password">
-
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="password-confirmation" class="col-sm-3 control-label">Confirm
-							password</label>
-						<div class="col-sm-7">
-							<input type="password" class="form-control"
-								id="password-confirmation" name="password-confirmation"
-								placeholder="Confirm password">
 						</div>
 					</div>
 
@@ -145,23 +103,40 @@
 							<p class="help-block">Example http://twitter.com/mytwitter</p>
 						</div>
 					</div>
-
-					<hr class="panel-wide">
-
+					
+					
 					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-9">
-							<div class="checkbox">
-								<label> <input type="checkbox" name="jq-validation-policy"
-									id="jq-validation-policy" class="px"> <span class="lbl">Confirm
-										policy</span>
-								</label>
-							</div>
+						<label for="password" class="col-sm-3 control-label">New Password</label>
+						<div class="col-sm-7">
+				<input type="password" class="form-control" id="password"
+								name="password" placeholder="Not changed">
+
 						</div>
 					</div>
 
 					<div class="form-group">
+						<label for="password-confirmation" class="col-sm-3 control-label">Confirm
+							new password</label>
+						<div class="col-sm-7">
+							<input type="password" class="form-control"
+								id="password-confirmation" name="password-confirmation" placeholder="Confirm new password">
+						</div>
+					</div>
+
+					<?php if(!Application_Model_Auth::isAdmin()){ ?>
+					<div class="form-group">
+						<label for="current-password" class="col-sm-3 control-label">Current Password</label>
+						<div class="col-sm-7">
+				<input type="password" class="form-control" id="current-password"
+								name="current-password" placeholder="Current Password">
+
+						</div>
+					</div>
+					<?php } ?>
+
+					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-9">
-							<button type="submit" class="btn btn-primary">Sign in</button>
+							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
 				</form>
