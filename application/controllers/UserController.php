@@ -19,16 +19,13 @@ class UserController extends Zend_Controller_Action {
 	
 	}
 	
-<<<<<<< HEAD
-=======
 	public function listAction() {
 
 		$this->view->users = Application_Model_UserManager::getAll(null, 'name');
 		
 	}
-	
->>>>>>> cadaf34e1d23454327ded66ea3c3d0da4717ef11
-	public function registerAction() {
+
+		public function registerAction() {
 		
 		if(Application_Model_Auth::getUser()) Application_Model_Auth::redirect();
 		
