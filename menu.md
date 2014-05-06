@@ -26,4 +26,6 @@
 
 > Problems
 
+>> All Problems
+
 >> [Tags]
