@@ -20,29 +20,23 @@
 							ignore: '.ignore, .select2-input',
 							focusInvalid: false,
 							rules: {
-								'number': {
-									required: true
-								},
 								'author': {
 									required: true
 								},
-								'name': {
+								'title': {
 									required: true
 								},
-								'description': {
-								  required: true,
-								},	
-								'time':{ 
+								'timelimit':{ 
 									required: true,
 								},	
-								'finputs': {
+								'description': {
 									  required: true,
 									  
 								},							
 							},
 							errorPlacement: function(error, element) {
 								error.addClass("help-block");
-								if (element.attr("name") == "finputs") error.insertAfter(element.parent());
+								if (element.attr("name") == "description") error.insertAfter(element.parent());
 								else error.insertAfter(element);
 							}
 						});
@@ -55,9 +49,8 @@
 				<span class="panel-title">Informations</span>
 			</div>
 			<div class="panel-body">
-				<div class="note note-danger">This email is already registered.</div>
 
-				<form class="form-horizontal" id="jq-validation-form" method="post">
+				<form class="form-horizontal" id="jq-validation-form" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="author" class="col-sm-3 control-label">Author</label>
 						<div class="col-sm-7">
@@ -66,41 +59,34 @@
 						</div>
 					</div>
 
+					
 					<div class="form-group">
-						<label for="number" class="col-sm-3 control-label">Number</label>
+						<label for="title" class="col-sm-3 control-label">Title</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="number" name="number"
-								placeholder="Number">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="name" class="col-sm-3 control-label">Name</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="name" name="name"
-								placeholder="Name">
+							<input type="text" class="form-control" id="title" name="title"
+								placeholder="Title">
 						</div>
 					</div>
 
 
 					<div class="form-group">
-						<label for="description" class="col-sm-3 control-label">Description</label>
-						<div class="col-sm-7">
-							<textarea class="form-control" rows="20" id="description"
-								name="description" placeholder="Description"></textarea>
+						<label for="timelimit" class="col-sm-3 control-label">Time Limit</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="timelimit" name="timelimit"
+								placeholder="Time Limit">
 						</div>
 					</div>
-
+					
 					<div class="form-group">
-						<label for="time" class="col-sm-3 control-label">Time Limit</label>
+						<label for="hide" class="col-sm-3 control-label">Hide</label>
 						<div class="col-sm-1">
-							<input type="time" class="form-control" id="time" name="time"
-								placeholder="Time">
+							<input type="checkbox" class="form-control" id="hide" name="hide"
+								placeholder="Hide">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="description" class="col-sm-3 control-label">File</label>
+						<label for="description" class="col-sm-3 control-label">File Description</label>
 						<script>
 							init.push(function () {
 								$('#finputs').pixelFileInput({ placeholder: 'No file selected...' });
@@ -108,45 +94,7 @@
 						</script>
 
 						<div class="col-sm-7">
-							<input type="file" id="finputs" name="finputs">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<!-- Multiselect -->
-						<label for="description" class="col-sm-3 control-label">Users</label>
-						<div class="col-sm-7">
-							<select multiple="multiple" id="users" name="users"
-								class="form-control">
-								<optgroup label="Group1">
-									<option value="C1">Classmate1</option>
-									<option value="C2">Classmate2</option>
-								</optgroup>
-								<optgroup label="Group2">
-									<option value="C3">Classmate3</option>
-									<option value="C4">Classmate4</option>
-									<option value="C5">Classmate5</option>
-									<option value="C6">Classmate6</option>
-								</optgroup>
-								<optgroup label="Group3">
-									<option value="C7">Classmate7</option>
-									<option value="C8">Classmate8</option>
-									<option value="C9">Classmate9</option>
-									<option value="C10">Classmate10</option>
-								</optgroup>
-								<optgroup label="Group4">
-									<option value="C11">Classmate11</option>
-									<option value="C12">Classmate12</option>
-									<option value="C13">Classmate13</option>
-									<option value="C14">Classmate14</option>
-								</optgroup>
-								<optgroup label="Group5">
-									<option value="C15">Classmate15</option>
-									<option value="C16">Classmate16</option>
-									<option value="C17">Classmate17</option>
-									<option value="C18">Classmate18</option>
-								</optgroup>
-							</select>
+							<input type="file" id="description" name="description">
 						</div>
 					</div>
 
