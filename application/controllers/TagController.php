@@ -9,8 +9,6 @@ class TagController extends Zend_Controller_Action {
 	
 	public function listAction() {
 
-		$this->view->users = Application_Model_UserManager::getAll(null, 'name');
-		
 	}
 
 	public function registerAction() {
