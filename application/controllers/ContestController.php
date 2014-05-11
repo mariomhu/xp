@@ -10,4 +10,15 @@ class ContestController extends Zend_Controller_Action {
 		
 	}
 	
+	public function editAction() {
+	
+	}
+	
+	public function listAction() {
+	
+	}
+	
+	public function removeAction() {
+	
+	}
 }

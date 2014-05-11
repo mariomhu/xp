@@ -1,20 +1,19 @@
 <?php
-
-class IndexController extends Zend_Controller_Action
-{
-
-    public function init()
-    {
-        /* Initialize action controller here */
-    }
-
-    public function indexAction()
-    {
+class IndexController extends Zend_Controller_Action {
 	
-    	//Application_Model_UserManager::increment("ac", 7);
-    	
+	public function init() {
+		/* Initialize action controller here */
+	}
+	
+	public function indexAction() {
 		
-    }
-
+		// Application_Model_UserManager::increment("ac", 7);
+	}
+	
+	public function contactAction() {
+	}
+	
+	public function aboutAction() {
+	}
 }
 
