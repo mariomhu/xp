@@ -2,7 +2,7 @@
 
 class Application_Model_TagManager extends Application_Model_Manager{
 	
-	public static $table = "tag";
+	public static $table = "tags";
 	
 	public static function add($values){
 		return parent::add(array(
