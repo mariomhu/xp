@@ -1,0 +1,70 @@
+<div class="page-header">
+	<h1>Tag</h1>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<script>
+					init.push(function () {		
+						
+						$("#jq-validation-form").validate({
+							ignore: '.ignore, .select2-input',
+							focusInvalid: false,
+							rules: {
+								'name': {
+								  required: true,
+								}	
+							}
+						});
+					});
+				</script>
+
+		<div class="panel">
+			<div class="panel-heading">
+				<span class="panel-title">Change</span>
+			</div>
+			<div class="panel-body">
+
+				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>			
+				<?php if($this->success) { ?>			
+
+					<div id="success" class="modal modal-alert modal-success fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<i class="fa fa-check-circle"></i>
+								</div>
+								<div class="modal-title"><?php echo $this->success;?></div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+								</div>
+							</div> 
+						</div> 
+					</div>
+					<script>
+						init.push(function(){ 
+							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/tag/list"; });
+							$('#success').modal();
+						});
+					</script>
+				<?php } ?>
+				
+				<form class="form-horizontal" id="jq-validation-form" method="post">
+					<div class="form-group">
+						<label for="name" class="col-sm-3 control-label">Name</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="name" name="name"
+								placeholder="Name" value="<?php echo $_POST["name"]; ?>">
+						</div>
+					</div>			
+				
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-9">
+							<button type="submit" class="btn btn-primary">Confirm</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

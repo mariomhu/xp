@@ -1,15 +1,11 @@
 <div class="page-header">
-	<h1>User</h1>
+	<h1>Tag</h1>
 </div>
 
 <div class="row">
 	<div class="col-sm-12">
 		<script>
 					init.push(function () {		
-						
-						jQuery.validator.addMethod("alphanumeric", function(value, element) {
-							return this.optional(element) || /^\w+$/i.test(value);
-						}, "Letters, numbers, and underscores only please");
 						
 						$("#jq-validation-form").validate({
 							ignore: '.ignore, .select2-input',
@@ -18,9 +14,6 @@
 								'name': {
 								  required: true,
 								}	
-							},
-							messages: {
-								'jq-validation-policy': 'You must check it!'
 							}
 						});
 					});
@@ -28,7 +21,7 @@
 
 		<div class="panel">
 			<div class="panel-heading">
-				<span class="panel-title">Sign Up</span>
+				<span class="panel-title">Register</span>
 			</div>
 			<div class="panel-body">
 
@@ -50,7 +43,7 @@
 					</div>
 					<script>
 						init.push(function(){ 
-							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/user/"; });
+							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/tag/list"; });
 							$('#success').modal();
 						});
 					</script>
@@ -75,4 +68,3 @@
 		</div>
 	</div>
 </div>
-<!-- /5. $JQUERY_VALIDATION -->

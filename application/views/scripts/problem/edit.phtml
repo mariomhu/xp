@@ -1,0 +1,178 @@
+<div class="page-header">
+	<h1>Problem</h1>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<script>
+					init.push(function () {
+
+						// Older "accept" file extension method. Old docs: http://docs.jquery.com/Plugins/Validation/Methods/accept
+						jQuery.validator.addMethod("extension", function(value, element, param) {
+							param = typeof param === "string" ? param.replace(/,/g, '|') : "png|jpe?g|gif";
+							return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
+						}, jQuery.format("Please enter a value with a valid extension."));
+
+						$("#jq-validation-form").validate({
+							ignore: '.ignore, .select2-input',
+							focusInvalid: false,
+							rules: {
+								'title': {
+									required: true
+								},
+								'timelimit':{ 
+									required: true,
+									digits: true,
+								},	
+								'description': {
+									  extension: 'pdf'
+								},	
+								'cases': {
+									  extension: 'zip'
+								},						
+							},
+							errorPlacement: function(error, element) {
+								error.addClass("help-block");
+								if (element.attr("type") == "file") error.insertAfter(element.parent());
+								else error.insertAfter(element);
+							}
+						});
+						$('#active').switcher({
+							theme: 'square',
+							on_state_content: '<span class="fa fa-check"></span>',
+							off_state_content: '<span class="fa fa-times"></span>'
+						});
+						
+						$("#tags_select").select2().on("change", function(e) {
+				        	$('#tags').val($('#tags_select').val().join(','));
+				          }).on("select2-loaded", function(e) {
+					          console.log(123);
+				        	$('#tags').val($('#tags_select').val().join(','));
+				          })
+						
+					});
+
+				
+				</script>
+		<!-- / Javascript -->
+
+		<div class="panel">
+			<div class="panel-heading">
+				<span class="panel-title">Change</span>
+			</div>
+			<div class="panel-body">
+			
+				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>			
+				<?php if($this->success) { ?>			
+
+					<div id="success" class="modal modal-alert modal-success fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<i class="fa fa-check-circle"></i>
+								</div>
+								<div class="modal-title"><?php echo $this->success;?></div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+								</div>
+							</div> 
+						</div> 
+					</div>
+					<script>
+						init.push(function(){ 
+							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/p/"+<?php echo $this->id?>; });
+							$('#success').modal();
+						});
+					</script>
+				<?php } ?>
+
+				<form class="form-horizontal" id="jq-validation-form" method="post" enctype="multipart/form-data" id="formproblem">
+
+					<div class="form-group">
+						<label for="title" class="col-sm-3 control-label">Title</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="title" name="title" placeholder="Title" value="<?php echo $_POST['title'];?>">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="author" class="col-sm-3 control-label">Author</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="author" name="author" placeholder="Author" value="<?php echo $_POST['author'];?>">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="timelimit" class="col-sm-3 control-label">Time Limit</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="timelimit" name="timelimit" placeholder="Time Limit" value="<?php echo $_POST['timelimit'];?>">
+							<p class="help-block">Time in milliseconds.</p>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="active" class="col-sm-3 control-label">Active</label>
+						<div class="col-sm-1">
+							<input type="checkbox" id="active" name="active" placeholder="Active" <?php if($_POST['active']) echo 'checked="checked"';?>>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="description" class="col-sm-3 control-label">Description</label>
+						<script>
+							init.push(function () {
+								$('#description').pixelFileInput({ placeholder: 'No file selected...' });
+							})
+						</script>
+
+						<div class="col-sm-7">
+							<input type="file" id="description" name="description">
+							<p class="help-block">Pdf File.</p>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="cases" class="col-sm-3 control-label">Test Cases</label>
+						<script>
+							init.push(function () {
+								$('#cases').pixelFileInput({ placeholder: 'No file selected...' });
+							})
+						</script>
+
+						<div class="col-sm-7">
+							<input type="file" id="cases" name="cases">
+							<p class="help-block">Zip File.</p>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="tags_select" class="col-sm-3 control-label">Tags</label>
+						<div class="col-sm-7">
+							<div class="select2-primary">
+								<select multiple="multiple" class="form-control" id="tags_select">
+									<?php 
+									foreach ($this->tags as $tag){
+										echo "<option value='$tag[id]'";
+										if(isset($_POST['tags'][$tag['id']])) echo " selected='selected'";
+										echo ">$tag[name]</option>";
+									}
+									?>
+								</select>
+								<input type="hidden" id="tags" name="tags"/>
+							</div>
+						</div>
+					</div>
+					
+					
+					<hr class="panel-wide">
+
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-9">
+							<button type="submit" class="btn btn-primary">Confirm</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

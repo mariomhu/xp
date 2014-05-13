@@ -7,18 +7,18 @@ class Application_Model_ProblemManager extends Application_Model_Manager{
 	public static function add($values){
 		return parent::add(array(
 			"title" => $values['title'],
-			"hide" => $values['hide'],
+			"active" => $values['active'],
 			"timelimit" => $values['timelimit'],
-			"autor" => $values['autor']
+			"author" => $values['author']
 		));
 	}
 	
 	public static function set($values, $id){
 		return parent::set(array(
 			"title" => $values['title'],
-			"hide" => $values['hide'],
+			"active" => $values['active'],
 			"timelimit" => $values['timelimit'],
-			"autor" => $values['autor']
+			"author" => $values['author']
 		), $id);
 	}
 	
