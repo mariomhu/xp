@@ -6,6 +6,14 @@ class ProblemController extends Zend_Controller_Action {
 	
 	}
 	
+	public function editAction() {
+
+	}
+		
+	public function listAction() {
+	
+	}
+		
 	public function registerAction() {
 		//Application_Model_Auth::checkIsAdmin();
 		
@@ -16,6 +24,10 @@ class ProblemController extends Zend_Controller_Action {
 			Zend_Debug::dump($_FILES['description']['tmp_name']);
 			//$this->_helper->redirector->gotoUrl("/index.php/p/$id");
 		}
+	}
+	
+	public function removeAction() {
+	
 	}
 	
 }
