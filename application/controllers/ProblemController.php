@@ -7,7 +7,7 @@ class ProblemController extends Zend_Controller_Action {
 	}
 	
 	public function registerAction() {
-		Application_Model_Auth::checkIsAdmin();
+		//Application_Model_Auth::checkIsAdmin();
 		
 		if($_POST){
 			Application_Model_ProblemManager::add($_POST);

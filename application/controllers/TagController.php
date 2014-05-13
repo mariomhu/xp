@@ -12,12 +12,12 @@ class TagController extends Zend_Controller_Action {
 	}
 
 	public function registerAction() {
-		//Application_Model_Auth::checkIsAdmin();
+		Application_Model_Auth::checkIsAdmin();
 		if($_POST){
-			if(Application_Model_UserManager::get(array("name = ?" => $_POST['name']))){
+			if(Application_Model_TagManager::get(array("name = ?" => $_POST['name']))){
 				$this->view->error = "This tag is already registered.";
 			}else{
-				Application_Model_UserManager::add($_POST);
+				Application_Model_TagManager::add($_POST);
 				$this->view->success = "Tag successfully created.";	
 			}
 		}
