@@ -9,7 +9,7 @@ class Application_Model_ProblemManager extends Application_Model_Manager{
 			"title" => $values['title'],
 			"active" => $values['active'],
 			"timelimit" => $values['timelimit'],
-			"author" => $values['author']
+			"from" => $values['from']
 		));
 	}
 	
@@ -18,7 +18,7 @@ class Application_Model_ProblemManager extends Application_Model_Manager{
 			"title" => $values['title'],
 			"active" => $values['active'],
 			"timelimit" => $values['timelimit'],
-			"author" => $values['author']
+			"from" => $values['from']
 		), $id);
 	}
 	

@@ -8,7 +8,20 @@ class ProblemController extends Zend_Controller_Action {
 	
 		
 	public function listAction() {
-	
+		$tag = intval($this->getParam("tag"));
+		if($tag){
+			$select = Application_Model_ProblemManager::select();
+			$select->joinInner("problemtag", "problem.id = problemtag.problem and problemtag.tag = $tag");
+			$db = Zend_Db_Table::getDefaultAdapter();
+			$this->view->problems = $db->query($select)->fetchAll();
+			$tag = Application_Model_TagManager::get($tag);
+			$this->view->title = "Problems - $tag[name]";
+		}else{
+			$this->view->title = "All Problem";
+			$this->view->problems = Application_Model_ProblemManager::getAll();
+		}
+		
+		
 	}
 		
 	public function registerAction() {
@@ -34,7 +47,7 @@ class ProblemController extends Zend_Controller_Action {
 	}
 
 	public function editAction() {
-		//Application_Model_Auth::checkIsAdmin();
+		Application_Model_Auth::checkIsAdmin();
 		$this->view->tags = Application_Model_TagManager::getAll(null, 'name');
 		$id = $this->getParam("id");
 		if($_POST){
