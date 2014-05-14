@@ -45,10 +45,10 @@
 						
 						$("#tags_select").select2().on("change", function(e) {
 				        	$('#tags').val($('#tags_select').val().join(','));
-				          }).on("select2-loaded", function(e) {
-					          console.log(123);
+				          }).on("select2-open", function(e) {
 				        	$('#tags').val($('#tags_select').val().join(','));
 				          })
+				        	$('#tags').val($('#tags_select').val().join(','));
 						
 					});
 

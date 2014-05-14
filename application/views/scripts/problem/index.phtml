@@ -1,0 +1,177 @@
+<div class="page-header">
+	<h1>Problem</h1>
+	<?php if(Application_Model_Auth::isAdmin()){ ?>
+	<div class="btn-group btn-group pull-right">
+		<a class="btn btn-primary" href="index.php/problem/edit/id/<?php echo $this->problem['id'];?>">Change</a>
+		<button class="btn btn-primary" id="remove">Remove</button>
+		<script>
+		init.push(function () {
+			$('#remove').on('click', function () {
+				bootbox.confirm({
+					message: "Are you sure?",
+					callback: function(result) {
+						if(result) document.location = "index.php/problem/remove/id/<?php echo $this->problem['id'];?>";
+					},
+					className: "bootbox-sm"
+				});
+			});
+		});
+		</script>
+	</div>
+	<?php } ?>
+</div>
+
+<script>
+
+init.push(function () {
+
+	var totalTried = <?php echo $this->problem['tried']; ?>;
+	var totalSubmissions = <?php echo $this->submissions; ?>;
+	
+	if(totalSubmissions) Morris.Donut({
+		element: 'submissions',
+		data: [
+			{ label: 'Accepted', value: <?php echo $this->problem['ac']; ?> },
+			{ label: 'Presentation Error', value: <?php echo $this->problem['pe']; ?> },
+			{ label: 'Wrong Answer', value: <?php echo $this->problem['wa']; ?> },
+			{ label: 'Compile Error', value: <?php echo $this->problem['ce']; ?> },
+			{ label: 'Runtime Error', value: <?php echo $this->problem['re']; ?> },
+			{ label: 'Time Limit', value: <?php echo $this->problem['tl']; ?> }
+		],
+		colors: PixelAdmin.settings.consts.COLORS,
+		resize: true,
+		labelColor: '#888',
+		formatter: function (y) { 
+			return y + " ("+(y/totalSubmissions*100).toFixed(2)+"%)"; 
+		}
+	});
+
+	
+	if(totalTried) Morris.Donut({
+		element: 'tried',
+		data: [
+			{ label: 'Solved', value: <?php echo $this->problem['solved']; ?> },
+			{ label: 'Unsolved', value: <?php echo $this->problem['tried']-$this->problem['solved']; ?> }
+		],
+		colors: PixelAdmin.settings.consts.COLORS,
+		resize: true,
+		labelColor: '#888',
+		formatter: function (y) { 
+			return y + " ("+(y/totalTried*100).toFixed(2)+"%)"; 
+		}
+	});
+});
+</script>
+
+<style>
+.btn-right{
+	margin: -10px -18px -10px 16px !important;
+	border-radius: 0px 1000px 1000px 0px !important;	
+}
+</style>
+
+<div class="panel">
+			<div class="panel-body">
+
+		<div class="row">
+			<div class="col-md-4">
+
+				<div class="panel panel-primary panel-dark panel-body-colorful widget-profile widget-profile-centered no-margin">
+					<div class="panel-heading" style="height: 263px;">
+						<div style="height: 160px; margin-top: 30px">
+							<span class="text-lg"><?php echo $this->problem['id']; ?> - <?php echo $this->problem['title']; ?></span><br/>
+							<span><?php if($this->problem['from']) echo $this->problem['from']."</br>"; ?></span><br/>
+							<?php foreach ($this->tags as $tag){ ?>
+							<a href="index.php/problem/list/tag/<?php echo $tag['id'];?>" class="btn btn-sm btn-info btn-rounded"><?php echo $tag['name'];?></a>
+							<?php } ?>
+							
+						</div>
+						<div class="btn-group btn-group-justified">
+							<a href="index.php/problem/pdf/id/<?php echo $this->problem['id']; ?>" class="btn btn-rounded btn-lg btn-labeled"><span class="btn-label icon fa fa-file-text"></span>View</a>
+							<a href="#" class="btn btn-rounded btn-lg btn-labeled"><span class="btn-label icon fa fa-edit pull-right btn-right"></span>Submit</a>
+						</div>
+						
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-4">
+				<div class="panel panel-primary panel-dark no-margin" style="height: 265px;">
+					<div class="panel-heading">
+						<span class="table-caption text-semibold"><?php echo $this->submissions; ?> Submissions</span>
+					</div>
+					<div class="panel-body">
+						<div class="graph-container text-center">
+							<?php if($this->submissions) { ?>
+								<div id="submissions" style="height: 180px;" class="graph"></div>
+							<?php }else{ ?>
+								<i style="font-size: 120px; color: #EEE; margin-top: 30px" class="fa fa-bar-chart-o"></i>
+							<?php }?>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="panel panel-primary panel-dark no-margin" style="height: 265px;">
+					<div class="panel-heading">
+						<span class="table-caption text-semibold"><?php echo $this->problem['tried']; ?> Users Tried</span>
+					</div>
+					<div class="panel-body">
+						<div class="graph-container text-center">
+							<?php if($this->problem['tried']) { ?>
+								<div id="tried" style="height: 180px;" class="graph"></div>
+							<?php }else{ ?>
+								<i style="font-size: 120px; color: #EEE; margin-top: 30px" class="fa fa-bar-chart-o"></i>
+							<?php }?>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<script>
+					init.push(function () {
+						$('#datatables-problems').dataTable();
+						$('#datatables-problems_wrapper .table-caption').text('Ranking');
+						$('#datatables-problems_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+					});
+				</script>
+
+		<div class="panel">
+			<div class="panel-body">
+				<div class="table-primary">
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatables-problems">
+						<thead>
+							<tr>
+								<th style="width: 100px; min-width: 100px;">Position</th>
+								<th>User</th>
+								<th style="width: 100px; min-width: 100px;">Time</th>
+								<th style="width: 100px; min-width: 100px;">Language</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php for($i=0; $i<100; $i++){ ?>
+							<tr class="odd gradeX" onclick="document.location='index.php/p/<?php echo $problem['id']; ?>'">
+								<td><?php echo $i+1; ?></td>
+								<td>Name</td>
+								<td>0.002</td>
+								<td>C++</td>
+							</tr>
+						<?php }?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

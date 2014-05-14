@@ -22,5 +22,13 @@ class Application_Model_ProblemManager extends Application_Model_Manager{
 		), $id);
 	}
 	
+	public static function getByTag($tag){
+		$tag = intval($tag);
+		$select = self::select ();
+		$select->joinInner ( "problemtag", "problem.id = problemtag.problem and problemtag.tag = $tag" );
+		$db = Zend_Db_Table::getDefaultAdapter ();
+		return $db->query ( $select )->fetchAll ();
+	}
+	
 }
 
