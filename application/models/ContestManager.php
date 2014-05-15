@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_ProblemManager extends Application_Model_Manager{
+class Application_Model_ContestManager extends Application_Model_Manager{
 	
 	public static $table = "contest";
 	

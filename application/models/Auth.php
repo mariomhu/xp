@@ -35,5 +35,12 @@ class Application_Model_Auth{
 		$redirector->gotoSimpleAndExit('index','index');
 	}
 	
+	public static function checkIsJudge(){
+		if(!Application_Model_JudgeManager::get(array('key'=>$_POST['key']))){
+			echo "invalid key\n";
+			exit();
+		}
+	}
+	
 }
 

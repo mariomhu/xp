@@ -21,5 +21,11 @@ class Application_Model_SubmissionManager extends Application_Model_Manager{
 		), $id);
 	}
 	
+	public static function getNext(){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		$select = 'SELECT * FROM submission WHERE (TIMEDIFF(NOW(),date_judge) > "00:05:00" OR date_judge IS NULL) AND state = 0 ORDER BY id LIMI 1';
+		return $db->query($select)->fetch();
+	}
+	
 }
 
