@@ -32,11 +32,13 @@ class Application_Model_Auth{
 	
 	public static function redirect(){
 		$redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('redirector');
-		$redirector->gotoSimpleAndExit('index','index');
+		$redirector->gotoSimpleAndExit('login','index');
 	}
 	
 	public static function checkIsJudge(){
-		if(!Application_Model_JudgeManager::get(array('key'=>$_POST['key']))){
+		$_POST['key'] = "038b5a4ffcae921972bdbe41c9f29f16";
+		
+		if(!$_POST['key'] || !Application_Model_JudgeManager::get(array("judge.key = ?"=>$_POST['key']))){
 			echo "invalid key\n";
 			exit();
 		}

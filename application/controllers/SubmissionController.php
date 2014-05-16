@@ -45,28 +45,4 @@ class SubmissionController extends Zend_Controller_Action {
 	
 	}
 
-	public function judgeGetAction() {
-		$this->_helper->layout()->disableLayout();
-		$this->_helper->viewRenderer->setNoRender(true);
-		Application_Model_Auth::checkIsJudge();
-		
-		$submission = Application_Model_SubmissionManager::getNext();
-		if(!$submission) return;
-		$problem = Application_Model_ProblemManager::get($submission['problem']);
-
-		echo $submission['id']."\n";
-		echo $problem['id']."\n";
-		echo $problem['version']."\n";
-		echo $problem['timelimit']."\n";
-	}
-	
-	public function judgeSetAction() {
-		$this->_helper->layout()->disableLayout();
-		$this->_helper->viewRenderer->setNoRender(true);
-		Application_Model_Auth::checkIsJudge();
-		
-		
-		
-	}
-	
 }

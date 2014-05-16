@@ -1,13 +1,12 @@
 estados:
 
 0 In Queue (QU)
-1 julgando
-2 Accepted (AC)
-3 Presentation Error (PE)
-4 Wrong Answer (WA)
-5 Compile Error (CE)
-6 Runtime Error (RE)
-7 Time Limit Exceeded (TL)
+1 Accepted (AC)
+2 Presentation Error (PE)
+3 Wrong Answer (WA)
+4 Compile Error (CE)
+5 Runtime Error (RE)
+6 Time Limit Exceeded (TL)
 
 
 // Falta traduzir as colunas
