@@ -36,8 +36,6 @@ class Application_Model_Auth{
 	}
 	
 	public static function checkIsJudge(){
-		$_POST['key'] = "038b5a4ffcae921972bdbe41c9f29f16";
-		
 		if(!$_POST['key'] || !Application_Model_JudgeManager::get(array("judge.key = ?"=>$_POST['key']))){
 			echo "invalid key\n";
 			exit();

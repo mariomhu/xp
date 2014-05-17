@@ -11,10 +11,11 @@ class JudgeController extends Zend_Controller_Action {
 		$submission = Application_Model_SubmissionManager::getNext();
 		if(!$submission) return;
 
-		Application_Model_SubmissionManager::set(array('date_judge' => new Zend_Db_Expr('NOW()')), $submission['id']);
+		Application_Model_SubmissionManager::set(array('date_judge' => new Zend_Db_Expr('CURRENT_TIMESTAMP()')), $submission['id']);
 		$problem = Application_Model_ProblemManager::get($submission['problem']);
 
 		echo $submission['id']."\n";
+		echo $submission['language']."\n";
 		echo $problem['id']."\n";
 		echo $problem['version']."\n";
 		echo $problem['timelimit']."\n";
@@ -34,9 +35,17 @@ class JudgeController extends Zend_Controller_Action {
 		elseif($_POST['result'] == 5) $col = 're';
 		else $col = 'tl';
 
+		if($_POST['result'] == 1){
+			Application_Model_ProblemManager::increment('solved', $submission['problem']);
+			Application_Model_UserManager::increment('solved', $submission['user']);
+		}
+		Application_Model_ProblemManager::increment('tried', $submission['problem']);
+		Application_Model_UserManager::increment('tried', $submission['user']);
+		
+		
 		Application_Model_ProblemManager::increment($col, $submission['problem']);
 		Application_Model_UserManager::increment($col, $submission['user']);
-		Application_Model_SubmissionManager::set(array('state' => $_POST['result']), $submission['id']);
+		Application_Model_SubmissionManager::set(array('state' => $_POST['result'], 'time' => $_POST['time']), $submission['id']);
 	}
 
 	public function getSourceAction() {
@@ -50,6 +59,8 @@ class JudgeController extends Zend_Controller_Action {
 	public function getCasesAction() {
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
+		header("Content-Transfer-Encoding: binary");
+		header('Content-type: application/zip');
 		Application_Model_Auth::checkIsJudge();
 		$id = intval($_POST['problem']);
 		readfile("../data/testcases/$id.zip");

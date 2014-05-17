@@ -8,7 +8,7 @@ class SubmissionController extends Zend_Controller_Action {
 		
 		if($_POST){
 			
-			if($_POST['language'] != 0 && $_POST['language'] != 1) return;
+			if($_POST['language'] != 1 && $_POST['language'] != 2) return;
 				
 			$problem = Application_Model_ProblemManager::get($_POST['problem']);
 			if(!$problem){

@@ -17,8 +17,9 @@ class Application_Model_SubmissionManager extends Application_Model_Manager{
 			"problem" => $values['problem'],
 			"user" => $values['user'],
 			"time" => $values['time'],
-			"date_judge" => $values['time'],
-			"language" => $values['language']
+			"date_judge" => $values['date_judge'],
+			"language" => $values['language'],
+			"state" => $values['state']
 		), $id);
 	}
 	
