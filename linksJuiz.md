@@ -1,4 +1,4 @@
-Links para serem utilizados pelo juiz
+Links utilizados pelo juiz
 =========
 ----
 Acessar informações da próxima submissão
@@ -20,7 +20,7 @@ Formato do retorno:
  problem_timelimit (milissegundos)
 ```
 -----
-Zip com todos os casos de teste do problema
+Acessar zip com todos os casos de teste do problema
 -----
 ```
  [host]/index.php/judge/get-cases/
@@ -31,7 +31,7 @@ Parâmetros por POST:
 ```
 
 ----
-Código fonte da submissão
+Acessar código fonte da submissão
 ----
 ```
  [host]/index.php/judge/get-source/
