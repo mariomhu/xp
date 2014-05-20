@@ -31,9 +31,9 @@ class Application_Model_ContestManager extends Application_Model_Manager{
 	public static function getById($id){
 		$id = intval($id);
 		$select = self::select ();
-		$select->joinInner ( "id", "contest.id = problemtag.problem and problemtag.tag = $tag" );
+		$select->joinInner ( "id", "contest.id = problemtag.problem and problemtag.tag = $id" );
 		$db = Zend_Db_Table::getDefaultAdapter ();
-		return $db->query ( $select )->fetchAll ();
+		return $db->query ( $select )->fetchAll ();			
 	}
 	
 }
