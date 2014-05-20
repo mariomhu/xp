@@ -89,9 +89,9 @@
 					class="collapse navbar-collapse main-navbar-collapse">
 					<div>
 						<ul class="nav navbar-nav">
-							<li><a href="#">Home</a></li>
+							<li><a href="index.php/index">Home</a></li>
 							<li><a
-								href="http://localhost/xp/public/index.php/problem/register">Problems</a>
+								href="index.php/problem/list">Problems</a>
 							</li>
 							<li><a href="#">UFFS</a></li>
 							<li><a href="#">Sobre</a></li>
@@ -378,8 +378,10 @@
 					<li class="active"><a href="index.php"><i
 							class="menu-icon fa fa-dashboard"></i><span class="mm-text">Home</span></a>
 					</li>
-					<li><a href="index.php/user/register"><i class="menu-icon fa fa-tasks"></i><span
-							class="mm-text">Create Account</span></a></li>
+					<?php if(!Application_Model_Auth::getUser()) {?>
+						<li><a href="index.php/user/register"><i class="menu-icon fa fa-tasks"></i><span
+								class="mm-text">Create Account</span></a></li>
+					<?php }?>
 					<li><a href="index.php/user/list"><i class="menu-icon fa fa-desktop"></i><span
 							class="mm-text">Users</span></a></li>
 					<li><a href=""><i class="menu-icon fa fa-tasks"></i><span
@@ -389,9 +391,11 @@
 					<li class="mm-dropdown"><a href="index.php"><i class="menu-icon fa fa-flask"></i><span
 							class="mm-text">Submissions</span></a>
 						<ul>
-							<li><a tabindex="-1" href="index.php/submission/user"><span
-									class="mm-text">My Submission <span class="label label-success"></span></span></a>
-							</li>
+							<?php if(Application_Model_Auth::getUser()) {?>
+								<li><a tabindex="-1" href="index.php/submission/user"><span
+										class="mm-text">My Submission <span class="label label-success"></span></span></a>
+								</li>
+							<?php }?>
 							<li><a tabindex="-1" href="index.php/submission/list"><span
 									class="mm-text">All Submissions <span class="label label-success"></span></span></a>
 							</li>
@@ -404,15 +408,17 @@
 							<li><a tabindex="-1" href="layouts-grid.html"><span
 									class="mm-text">All Contests <span class="label label-success"></span></span></a>
 							</li>
-							<li><a tabindex="-1" href="layouts-grid.html"><span
-									class="mm-text">Enroled Contests <span class="label label-success"></span></span></a>
-							</li>
-							<li><a tabindex="-1" href="index.php/contest/register"><span
-									class="mm-text">My Contests <span class="label label-success"></span></span></a>
-							</li>
-							<li><a tabindex="-1" href="layouts-grid.html"><span
-									class="mm-text">Create Contest <span class="label label-success"></span></span></a>
-							</li>
+							<?php if(Application_Model_Auth::getUser()) {?>
+								<li><a tabindex="-1" href="layouts-grid.html"><span
+										class="mm-text">Enroled Contests <span class="label label-success"></span></span></a>
+								</li>
+								<li><a tabindex="-1" href="index.php/contest/register"><span
+										class="mm-text">My Contests <span class="label label-success"></span></span></a>
+								</li>
+								<li><a tabindex="-1" href="layouts-grid.html"><span
+										class="mm-text">Create Contest <span class="label label-success"></span></span></a>
+								</li>
+							<?php }?>
 						</ul>
 					</li>
 					
