@@ -158,14 +158,24 @@ init.push(function () {
 							</tr>
 						</thead>
 						<tbody>
-						<?php for($i=0; $i<100; $i++){ ?>
+			<!-- 		<?php #for($i=0; $i<100; $i++){ ?>
 							<tr class="odd gradeX" onclick="document.location='index.php/p/<?php echo $problem['id']; ?>'">
-								<td><?php echo $i+1; ?></td>
+								<td><?php# echo $i+1; ?></td>
 								<td>Name</td>
 								<td>0.002</td>
 								<td>C++</td>
 							</tr>
+			-->			<?php #}?>
+						<?php $i=1; foreach($this->ranking as $rank){ ?>
+							<tr class="odd gradeX" onclick="document.location='index.php/u/<?php echo $rank['user']; ?>'">
+								<td><?php echo $i++; ?></td>
+								<td><?php echo $rank['name']; ?></td>
+								<td><?php echo $rank['time']; ?></td>
+								<td><?php echo $rank['language']==1? "C" :"C++"; ?></td>
+							</tr>
 						<?php }?>
+						
+						
 						</tbody>
 					</table>
 				</div>

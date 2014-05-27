@@ -30,5 +30,13 @@ class Application_Model_ProblemManager extends Application_Model_Manager{
 		return $db->query ( $select )->fetchAll ();
 	}
 	
+	public static function getRankById($id){
+		$id = intval($id);
+		$select = self::select();
+		$select->joinInner("submission", "problem.id=submission.problem and submission.state='1' and problem.id= $id " );
+		$select->joinInner("user", "user.id=submission.user")->order("time");
+		$db = Zend_Db_Table::getDefaultAdapter();
+		return $db->query ($select)->fetchAll();
+	}
 }
 

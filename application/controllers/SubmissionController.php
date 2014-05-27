@@ -34,7 +34,7 @@ class SubmissionController extends Zend_Controller_Action {
 	}
 	
 	public function listAction() {
-	
+		$this->view->submissions = Application_Model_SubmissionManager::getSubmissions();
 	}
 		
 	public function rankAction() {

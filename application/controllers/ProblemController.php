@@ -10,6 +10,9 @@ class ProblemController extends Zend_Controller_Action {
 		
 		$this->view->tags = Application_Model_TagManager::getByProblem($id);
 		
+		$this->view->ranking = Application_Model_ProblemManager::getRankById($id);
+		
+		
 	}
 	public function listAction() {
 		$tag = intval ( $this->getParam ( "tag" ) );
