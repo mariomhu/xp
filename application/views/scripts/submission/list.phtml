@@ -15,32 +15,40 @@
 						id="datatables-problems">
 						<thead>
 							<tr>
-								<th style="width: 100px; min-width: 100px;">Id</th>
-								<th style="width: 100px; min-width: 100px;">Problem</th>
+								<th style="width: 50px; min-width: 50px;">Id</th>
+								<th>Problem</th>
 								<th>User</th>
 								<th style="width: 100px; min-width: 100px;">Time</th>
 								<th style="width: 100px; min-width: 100px;">Date</th>
 								<th style="width: 100px; min-width: 100px;">Language</th>
+								<th style="width: 100px; min-width: 100px;">State</th>
 							</tr>
 						</thead>
 						<tbody>
-							<!-- 		<?php #for($i=0; $i<100; $i++){ ?>
-							<tr class="odd gradeX" onclick="document.location='index.php/p/<?php echo $problem['id']; ?>'">
-								<td><?php# echo $i+1; ?></td>
-								<td>Name</td>
-								<td>0.002</td>
-								<td>C++</td>
-							</tr>
-			-->			<?php #}?>
+							
 						<?php $i=1; foreach($this->submissions as $subs){ ?>
 							<tr class="odd gradeX"
-								onclick="document.location='index.php/u/<?php echo $subs['user']; ?>'">
-								<td><?php echo $subs['submission.id']; ?></td>
-								<td><?php echo $subs['problem']; ?></td>
-								<td><?php echo $subs['name']; ?></td>
-								<td><?php echo $subs['time']; ?></td>
+								>
+								<td><?php echo $subs['id']; ?></td>
+								<td><a href="index.php/p/<?php echo $subs['problem']; ?>"><?php echo $subs['problem']." - ".$subs['title']; ?></a></td>
+								<td><a href="index.php/u/<?php echo $subs['login']; ?>"><?php echo $subs['name']; ?></a></td>
+								<td><?php echo $subs['time']; ?></td> 
 								<td><?php echo $subs['date']; ?></td>
 								<td><?php echo $subs['langueage']==1? "C" :"C++"; ?></td>
+								<td>
+									<?php 
+									if($subs['state']==0 && $subs['date_judge']) echo '<span class="label label-info ticket-label">On Judgement</span>';
+									else if($subs['state']==0) echo '<span class="label label-info ticket-label">In Queue</span>';
+									else if($subs['state']==1) echo '<span class="label label-success ticket-label">Accepted</span>';
+									else if($subs['state']==2) echo '<span class="label label-danger ticket-label">Presentation Error</span>';
+									else if($subs['state']==3) echo '<span class="label label-danger ticket-label">Wrong Answer</span>';
+									else if($subs['state']==4) echo '<span class="label label-danger ticket-label">Compile Error</span>';
+									else if($subs['state']==5) echo '<span class="label label-danger ticket-label">Runtime Error</span>';
+									else if($subs['state']==6) echo '<span class="label label-danger ticket-label">Time Limit Exceded</span>';
+									
+									?>
+								
+									</td>
 							</tr>
 						<?php }?>
 						

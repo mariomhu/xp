@@ -31,8 +31,9 @@ class Application_Model_SubmissionManager extends Application_Model_Manager{
 	
 	public static function getSubmissions(){
 		$select = self::select();
-		$select->joinInner("user", "user.id=submission.user");
+		$select->joinInner("user", "user.id=submission.user", array("login","name"));
 		$select->order('submission.date desc');
+		$select->joinInner("problem", "submission.problem=problem.id", array("title"));
 		$db = Zend_Db_Table::getDefaultAdapter();
 		return $db->query ($select)->fetchAll();
 	}

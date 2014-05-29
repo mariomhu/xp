@@ -154,6 +154,7 @@ init.push(function () {
 								<th style="width: 100px; min-width: 100px;">Position</th>
 								<th>User</th>
 								<th style="width: 100px; min-width: 100px;">Time</th>
+								<th style="width: 100px; min-width: 100px;">Date</th>
 								<th style="width: 100px; min-width: 100px;">Language</th>
 							</tr>
 						</thead>
@@ -171,6 +172,7 @@ init.push(function () {
 								<td><?php echo $i++; ?></td>
 								<td><?php echo $rank['name']; ?></td>
 								<td><?php echo $rank['time']; ?></td>
+								<td><?php echo $rank['date']; ?></td>
 								<td><?php echo $rank['language']==1? "C" :"C++"; ?></td>
 							</tr>
 						<?php }?>
