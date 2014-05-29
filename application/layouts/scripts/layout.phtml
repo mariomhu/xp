@@ -393,8 +393,8 @@
 					<li class="mm-dropdown"><a href="index.php"><i class="menu-icon fa fa-flask"></i><span
 							class="mm-text">Submissions</span></a>
 						<ul>
-							<?php if(Application_Model_Auth::getUser()) {?>
-								<li><a tabindex="-1" href="index.php/submission/user"><span
+							<?php $user = Application_Model_Auth::getUser(); if($user) {?>
+								<li><a tabindex="-1" href="index.php/submission/user/<?php echo $user['login'];?>"><span
 										class="mm-text">My Submission <span class="label label-success"></span></span></a>
 								</li>
 							<?php }?>
