@@ -1,5 +1,6 @@
 <?php
 class UserController extends Zend_Controller_Action {
+	
 	public function indexAction() {
 		$login = $this->getParam ( "login" );
 		if (! $login) {
@@ -12,10 +13,13 @@ class UserController extends Zend_Controller_Action {
 		
 		$this->view->submissions = $user ['ac'] + $user ['pe'] + $user ['wa'] + $user ['ce'] + $user ['re'] + $user ['tl'];
 		$this->view->user = $user;
+		$this->view->usersubmiss = Application_Model_UserManager::getUserProblems($user["id"]);
 	}
+	
 	public function listAction() {
 		$this->view->users = Application_Model_UserManager::getAll ( null, 'name' );
 	}
+	
 	public function registerAction() {
 		if (Application_Model_Auth::getUser ())
 			Application_Model_Auth::redirect ();
@@ -90,4 +94,5 @@ class UserController extends Zend_Controller_Action {
 		Application_Model_UserManager::remove ( $id );
 		$this->_helper->redirector ( 'index', 'user' );
 	}
+	
 }

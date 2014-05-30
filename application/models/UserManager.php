@@ -29,5 +29,13 @@ class Application_Model_UserManager extends Application_Model_Manager{
 		return parent::get(array("login = ?" => $login));
 	}
 	
+	public static function getUserProblems($id){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		$select = self::select();
+		$select->joinInner("bestsubmission", "bestsubmission.user = user.id");
+		$select->joinInner("problem", "problem.id = bestsubmission.problem");
+		$select->order('bestsubmission.id desc');
+		return $db->query ($select)->fetchAll();		
+	}
 }
 

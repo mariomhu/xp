@@ -160,14 +160,14 @@ init.push(function () {
 							</tr>
 						</thead>
 						<tbody>
-						<?php for($i=0; $i<100; $i++){ ?>
+						<?php foreach($this->usersubmiss as $userSubs){ ?>
 							<tr class="odd gradeX"
-								onclick="document.location='index.php/p/<?php echo $problem['id']; ?>'">
-								<td>Id</td>
-								<td>Title</td>
-								<td>Id Submission</td>
-								<td>Date</td>
-								<td>Time</td>
+								onclick="document.location='index.php/p/<?php echo $userSubs['problem.id']; ?>'">
+								<td><?php echo $userSubs['bestsumission.id']; ?>
+								<td><?php echo $userSubs['problem.title']; ?></td>
+								<td><?php echo $userSubs['submission.id'];?></td>
+								<td><?php echo $userSubs['submission.date']; ?></td>
+								<td><?php echo $userSubs['time']; ?></td>
 							</tr>
 						<?php }?>
 						</tbody>
