@@ -41,7 +41,7 @@ class SubmissionController extends Zend_Controller_Action {
 	public function userAction(){
 		Application_Model_Auth::checkIsUser();
 		$user = Application_Model_Auth::getUser();
-		$this->view->submissionsUser = Application_Model_SubmissionManager::getUserSubmissions();
+		$this->view->submissionsUser = Application_Model_SubmissionManager::getUserSubmissions($user['id']);
 	}
 		
 	public function rankAction() {

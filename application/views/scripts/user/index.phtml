@@ -152,22 +152,22 @@ init.push(function () {
 						id="datatables-problems">
 						<thead>
 							<tr>
-								<th>Id</th>
+								<th style="width: 100px; min-width: 100px;">Submission</th>
 								<th>Problem</th>
-								<th>Submission</th>
-								<th>Date</th>
-								<th>Time</th>
+								<th style="width: 100px; min-width: 100px;">Date</th>
+								<th style="width: 100px; min-width: 100px;">Time</th>
+								<th style="width: 100px; min-width: 100px;">Language</th>
 							</tr>
 						</thead>
 						<tbody>
-						<?php foreach($this->usersubmiss as $userSubs){ ?>
+						<?php foreach($this->problems as $value){ ?>
 							<tr class="odd gradeX"
-								onclick="document.location='index.php/p/<?php echo $userSubs['problem.id']; ?>'">
-								<td><?php echo $userSubs['bestsumission.id']; ?>
-								<td><?php echo $userSubs['problem.title']; ?></td>
-								<td><?php echo $userSubs['submission.id'];?></td>
-								<td><?php echo $userSubs['submission.date']; ?></td>
-								<td><?php echo $userSubs['time']; ?></td>
+								onclick="document.location='index.php/p/<?php echo $value['id']; ?>'">
+								<td><?php echo $value['idSub'];?></td>
+								<td><?php echo $value['id']." - ".$value['title'];?>
+								<td><?php echo $value['date']; ?></td>
+								<td><?php echo $value['time']; ?></td>
+								<td><?php echo $value['language']; ?></td>
 							</tr>
 						<?php }?>
 						</tbody>

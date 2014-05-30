@@ -13,7 +13,7 @@ class UserController extends Zend_Controller_Action {
 		
 		$this->view->submissions = $user ['ac'] + $user ['pe'] + $user ['wa'] + $user ['ce'] + $user ['re'] + $user ['tl'];
 		$this->view->user = $user;
-		$this->view->usersubmiss = Application_Model_UserManager::getUserProblems($user["id"]);
+		$this->view->problems = Application_Model_ProblemManager::getUserProblems($user["id"]);
 	}
 	
 	public function listAction() {
