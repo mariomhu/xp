@@ -5,7 +5,10 @@ class SubmissionController extends Zend_Controller_Action {
 	public function indexAction() {
 		Application_Model_Auth::checkIsUser();
 		$user = Application_Model_Auth::getUser();
-		
+		$problema = $this->getParam ( "problem" );
+		if($problema){
+			$this->view->problem = Application_Model_ProblemManager::get($problema);
+		}
 		if($_POST){
 			
 			if($_POST['language'] != 1 && $_POST['language'] != 2) return;
