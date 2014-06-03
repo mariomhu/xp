@@ -34,6 +34,7 @@ class Application_Model_SubmissionManager extends Application_Model_Manager{
 		$select->joinInner("user", "user.id=submission.user", array("login","name"));
 		$select->order('submission.date desc');
 		$select->joinInner("problem", "submission.problem=problem.id", array("title"));
+		$select->limit(50);
 		$db = Zend_Db_Table::getDefaultAdapter();
 		return $db->query ($select)->fetchAll();
 	}
