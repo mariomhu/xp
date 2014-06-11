@@ -5,7 +5,7 @@
 	<div class="row">
 		<!-- Page header, center on small screens -->
 		<h1 class="col-xs-12 col-sm-4 text-center text-left-sm">
-			<i class="fa fa-dashboard page-header-icon"></i>&nbsp;&nbsp;Home
+			<i class="fa fa-dashboard page-header-icon" ></i>&nbsp;&nbsp;Home
 		</h1>
 
 		<div class="col-xs-12 col-sm-8">
@@ -88,76 +88,15 @@
 					</div>
 					<div class="padding-sm-vr">
 						<ul class="list-group">
+							<?php $i=1; foreach($this->problems as $problem){ ?>
 							<li class="list-group-item padding-sm no-border-hr no-border-t">
 								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
+									<a href="#" title=""><?php echo $problem['title']; ?></a>
+									<div class="text-slim">por <?php echo $problem['from']; ?></div>
 								</div>
 								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
 							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
-							<li class="list-group-item padding-sm no-border-hr no-border-b">
-								<div class="pull-left">
-									<a href="#" title="">Nome Problema</a>
-									<div class="text-slim">por Autor</div>
-								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
-							</li>
+							<?php }?>
 						</ul>
 					</div>
 				</div>
