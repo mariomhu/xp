@@ -28,6 +28,10 @@ class JudgeController extends Zend_Controller_Action {
 		$submission = Application_Model_SubmissionManager::get($_POST['submission']);
 		if(!$submission || $submission['state']) return;
 
+		Application_Model_SubmissionManager::set(array('state' => $_POST['result'], 'time' => $_POST['time']), $submission['id']);
+
+		$submission = Application_Model_SubmissionManager::get($_POST['submission']);
+		
 		if($_POST['result'] == 1) $col = 'ac';
 		elseif($_POST['result'] == 2) $col = 'pe';
 		elseif($_POST['result'] == 3) $col = 'wa';
@@ -38,6 +42,19 @@ class JudgeController extends Zend_Controller_Action {
 		if($_POST['result'] == 1){
 			Application_Model_ProblemManager::increment('solved', $submission['problem']);
 			Application_Model_UserManager::increment('solved', $submission['user']);
+			
+			$best = Application_Model_BestSubmissionManager::get(array(
+				'user'=>$submission['user'],
+				'problem'=>$submission['problem'],
+			));
+			
+			if(!$best || $best['time'] > $submission['time']){
+				if($best) Application_Model_BestSubmissionManager::remove($best['id']);
+				$new = $submission;
+				$new['submission'] = $submission['id'];
+				Application_Model_BestSubmissionManager::add($best);
+			}
+			
 		}
 		Application_Model_ProblemManager::increment('tried', $submission['problem']);
 		Application_Model_UserManager::increment('tried', $submission['user']);
@@ -45,7 +62,6 @@ class JudgeController extends Zend_Controller_Action {
 		
 		Application_Model_ProblemManager::increment($col, $submission['problem']);
 		Application_Model_UserManager::increment($col, $submission['user']);
-		Application_Model_SubmissionManager::set(array('state' => $_POST['result'], 'time' => $_POST['time']), $submission['id']);
 	}
 
 	public function getSourceAction() {
