@@ -29,5 +29,12 @@ class Application_Model_UserManager extends Application_Model_Manager{
 		return parent::get(array("login = ?" => $login));
 	}
 	
+	public static function getLast(){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		$select = self::select();
+		$select->limit(10);
+		$select->order('date desc');
+		return $db->query ($select)->fetchAll();
+	}
 }
 

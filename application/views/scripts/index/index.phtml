@@ -88,13 +88,13 @@
 					</div>
 					<div class="padding-sm-vr">
 						<ul class="list-group">
-							<?php $i=1; foreach($this->problems as $problem){ ?>
+							<?php foreach($this->problems as $problem){ ?>
 							<li class="list-group-item padding-sm no-border-hr no-border-t">
 								<div class="pull-left">
 									<a href="#" title=""><?php echo $problem['title']; ?></a>
 									<div class="text-slim">por <?php echo $problem['from']; ?></div>
 								</div>
-								<div class="pull-right text-slim text-sm">10/10/10 10:10</div>
+								<div class="pull-right text-slim text-sm"><?php echo $problem['date']; ?></div>
 							</li>
 							<?php }?>
 						</ul>

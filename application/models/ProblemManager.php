@@ -38,12 +38,20 @@ class Application_Model_ProblemManager extends Application_Model_Manager{
 		$db = Zend_Db_Table::getDefaultAdapter();
 		return $db->query ($select)->fetchAll();
 	}
-	
+
 	public static function getUserProblems($id){
 		$db = Zend_Db_Table::getDefaultAdapter();
 		$select = self::select();
 		$select->joinInner("bestsubmission", "bestsubmission.problem = problem.id and bestsubmission.user = $id", array("time", "idSub"=>"id", "date", "language"));
 		$select->order('bestsubmission.id desc');
+		return $db->query ($select)->fetchAll();
+	}
+	
+	public static function getLast(){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		$select = self::select();
+		$select->limit(10);
+		$select->order('date desc');
 		return $db->query ($select)->fetchAll();
 	}
 }

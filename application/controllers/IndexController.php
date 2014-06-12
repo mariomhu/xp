@@ -4,15 +4,15 @@ class IndexController extends Zend_Controller_Action {
 	
 	public function indexAction() {
 		$tag = intval ( $this->getParam ( "tag" ) );
-			if ($tag) {
-				$this->view->problems = Application_Model_ProblemManager::getByTag($tag);
-				$tag = Application_Model_TagManager::get ( $tag );
-				$this->view->title = "Problems - $tag[name]";
-			} else {
-				$this->view->title = "All Problem";
-				$this->view->problems = Application_Model_ProblemManager::getAll ();
-			}
+		if ($tag) {
+			$this->view->problems = Application_Model_ProblemManager::getByTag($tag);
+			$tag = Application_Model_TagManager::get ( $tag );
+			$this->view->title = "Problems - $tag[name]";
+		} else {
+			$this->view->title = "All Problem";
+			$this->view->problems = Application_Model_ProblemManager::getLast ();
 		}
+	}
 		//$this->_helper->redirector('login', 'index');
 
 	
