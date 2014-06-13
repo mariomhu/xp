@@ -1,10 +1,17 @@
 
 <div class="page-header">
 	<h1>User Profile</h1>
-	<div class="btn-group btn-group pull-right">
-	<a class="btn btn-primary"
-			href="index.php/user/edit/id/<?php echo $this->user['id'];?>">Change</a>
 	
+	<?php 
+		$login = Application_Model_Auth::getUser();
+		if($login['id'] == $this->user['id'] || Application_Model_Auth::isAdmin()){
+	?>
+	<div class="btn-group btn-group pull-right">
+		<a class="btn btn-primary" href="index.php/user/edit/id/<?php echo $this->user['id'];?>">Edit Profile</a>
+		<a class="btn btn-primary" href="https://en.gravatar.com/connect/" target="_blank">Change Image</a>
+		
+		<?php if(Application_Model_Auth::isAdmin()){ ?>
+		
 		<button class="btn btn-primary" id="remove">Remove</button>
 		<script>
 		init.push(function () {
@@ -19,7 +26,9 @@
 			});
 		});
 		</script>
+		<?php } ?>
 	</div>
+	<?php } ?>
 </div>
 
 <script>
