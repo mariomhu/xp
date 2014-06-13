@@ -32,12 +32,12 @@ init.push(function () {
 	if(totalSubmissions) Morris.Donut({
 		element: 'submissions',
 		data: [
-			{ label: 'Accepted', value: <?php echo $this->user['ac']; ?> },
-			{ label: 'Presentation Error', value: <?php echo $this->user['pe']; ?> },
-			{ label: 'Wrong Answer', value: <?php echo $this->user['wa']; ?> },
-			{ label: 'Compile Error', value: <?php echo $this->user['ce']; ?> },
-			{ label: 'Runtime Error', value: <?php echo $this->user['re']; ?> },
-			{ label: 'Time Limit', value: <?php echo $this->user['tl']; ?> }
+			{ label: 'AC', value: <?php echo $this->user['ac']; ?> },
+			{ label: 'PE', value: <?php echo $this->user['pe']; ?> },
+			{ label: 'WA', value: <?php echo $this->user['wa']; ?> },
+			{ label: 'CE', value: <?php echo $this->user['ce']; ?> },
+			{ label: 'RE', value: <?php echo $this->user['re']; ?> },
+			{ label: 'TL', value: <?php echo $this->user['tl']; ?> }
 		],
 		colors: PixelAdmin.settings.consts.COLORS,
 		resize: true,
@@ -154,9 +154,9 @@ init.push(function () {
 							<tr>
 								<th style="width: 100px; min-width: 100px;">Submission</th>
 								<th>Problem</th>
-								<th style="width: 100px; min-width: 100px;">Date</th>
-								<th style="width: 100px; min-width: 100px;">Time</th>
-								<th style="width: 100px; min-width: 100px;">Language</th>
+								<th style="width: 150px; min-width: 150px;">Date</th>
+								<th style="width: 80px; min-width: 80px;">Time</th>
+								<th style="width: 90px; min-width: 9px;">Language</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -166,7 +166,7 @@ init.push(function () {
 								<td><?php echo $value['idSub'];?></td>
 								<td><?php echo $value['id']." - ".$value['title'];?>
 								<td><?php echo $value['date']; ?></td>
-								<td><?php echo $value['time']; ?></td>
+								<td><?php echo $value['time']; ?> ms</td>
 								<td><?php echo $value['language']; ?></td>
 							</tr>
 						<?php }?>

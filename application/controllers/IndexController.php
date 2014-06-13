@@ -36,5 +36,12 @@ class IndexController extends Zend_Controller_Action {
 			}
 		}
 	}
+	
+	public function logoutAction() {
+		$this->_helper->layout()->disableLayout();
+		Application_Model_Auth::logout();
+		Application_Model_Auth::redirect();
+	}
+	
 }
 

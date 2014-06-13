@@ -25,7 +25,9 @@ class JudgeController extends Zend_Controller_Action {
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		Application_Model_Auth::checkIsJudge();
+		
 		$submission = Application_Model_SubmissionManager::get($_POST['submission']);
+		
 		if(!$submission || $submission['state']) return;
 
 		Application_Model_SubmissionManager::set(array('state' => $_POST['result'], 'time' => $_POST['time']), $submission['id']);
@@ -38,30 +40,42 @@ class JudgeController extends Zend_Controller_Action {
 		elseif($_POST['result'] == 4) $col = 'ce';
 		elseif($_POST['result'] == 5) $col = 're';
 		else $col = 'tl';
+		
+		Application_Model_ProblemManager::increment($col, $submission['problem']);
+		Application_Model_UserManager::increment($col, $submission['user']);
 
+		$anterior = Application_Model_SubmissionManager::get(array(
+			'user = ?'=>$submission['user'],
+			'problem = ?'=>$submission['problem'],
+			'state >= ?'=>1,
+			'id != ?'=>$submission['id']
+		));	
+		
+		if(!$anterior){
+			Application_Model_ProblemManager::increment('tried', $submission['problem']);
+			Application_Model_UserManager::increment('tried', $submission['user']);
+		}
+		
 		if($_POST['result'] == 1){
-			Application_Model_ProblemManager::increment('solved', $submission['problem']);
-			Application_Model_UserManager::increment('solved', $submission['user']);
 			
 			$best = Application_Model_BestSubmissionManager::get(array(
-				'user'=>$submission['user'],
-				'problem'=>$submission['problem'],
+				'user = ?'=>$submission['user'],
+				'problem = ?'=>$submission['problem'],
 			));
+			
+			if(!$best){
+				Application_Model_ProblemManager::increment('solved', $submission['problem']);
+				Application_Model_UserManager::increment('solved', $submission['user']);
+			}
 			
 			if(!$best || $best['time'] > $submission['time']){
 				if($best) Application_Model_BestSubmissionManager::remove($best['id']);
 				$new = $submission;
 				$new['submission'] = $submission['id'];
-				Application_Model_BestSubmissionManager::add($best);
+				Application_Model_BestSubmissionManager::add($new);
 			}
 			
 		}
-		Application_Model_ProblemManager::increment('tried', $submission['problem']);
-		Application_Model_UserManager::increment('tried', $submission['user']);
-		
-		
-		Application_Model_ProblemManager::increment($col, $submission['problem']);
-		Application_Model_UserManager::increment($col, $submission['user']);
 	}
 
 	public function getSourceAction() {

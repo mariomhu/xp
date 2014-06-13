@@ -2,8 +2,7 @@
 	<h1>Problem</h1>
 	<?php if(Application_Model_Auth::isAdmin()){ ?>
 	<div class="btn-group btn-group pull-right">
-		<a class="btn btn-primary"
-			href="index.php/problem/edit/id/<?php echo $this->problem['id'];?>">Change</a>
+		<a class="btn btn-primary" href="index.php/problem/edit/id/<?php echo $this->problem['id'];?>">Change</a>
 		<button class="btn btn-primary" id="remove">Remove</button>
 		<script>
 		init.push(function () {
@@ -32,12 +31,12 @@ init.push(function () {
 	if(totalSubmissions) Morris.Donut({
 		element: 'submissions',
 		data: [
-			{ label: 'Accepted', value: <?php echo $this->problem['ac']; ?> },
-			{ label: 'Presentation Error', value: <?php echo $this->problem['pe']; ?> },
-			{ label: 'Wrong Answer', value: <?php echo $this->problem['wa']; ?> },
-			{ label: 'Compile Error', value: <?php echo $this->problem['ce']; ?> },
-			{ label: 'Runtime Error', value: <?php echo $this->problem['re']; ?> },
-			{ label: 'Time Limit', value: <?php echo $this->problem['tl']; ?> }
+			{ label: 'AC', value: <?php echo $this->problem['ac']; ?> },
+			{ label: 'PE', value: <?php echo $this->problem['pe']; ?> },
+			{ label: 'WA', value: <?php echo $this->problem['wa']; ?> },
+			{ label: 'CE', value: <?php echo $this->problem['ce']; ?> },
+			{ label: 'RE', value: <?php echo $this->problem['re']; ?> },
+			{ label: 'TL', value: <?php echo $this->problem['tl']; ?> }
 		],
 		colors: PixelAdmin.settings.consts.COLORS,
 		resize: true,
@@ -77,26 +76,18 @@ init.push(function () {
 		<div class="row">
 			<div class="col-md-4">
 
-				<div
-					class="panel panel-primary panel-dark panel-body-colorful widget-profile widget-profile-centered no-margin">
+				<div class="panel panel-primary panel-dark panel-body-colorful widget-profile widget-profile-centered no-margin">
 					<div class="panel-heading" style="height: 263px;">
 						<div style="height: 160px; margin-top: 30px">
-							<span class="text-lg"><?php echo $this->problem['id']; ?> - <?php echo $this->problem['title']; ?></span><br />
-							<span><?php if($this->problem['from']) echo $this->problem['from']."</br>"; ?></span><br />
+							<span class="text-lg"><?php echo $this->problem['id']; ?> - <?php echo $this->problem['title']; ?></span><br /> <span><?php if($this->problem['from']) echo $this->problem['from']."</br>"; ?></span><br />
 							<?php foreach ($this->tags as $tag){ ?>
-							<a href="index.php/problem/list/tag/<?php echo $tag['id'];?>"
-								class="btn btn-sm btn-info btn-rounded"><?php echo $tag['name'];?></a>
+							<a href="index.php/problem/list/tag/<?php echo $tag['id'];?>" class="btn btn-sm btn-info btn-rounded"><?php echo $tag['name'];?></a>
 							<?php } ?>
 							
 						</div>
 						<div class="btn-group btn-group-justified">
-							<a
-								href="index.php/problem/pdf/id/<?php echo $this->problem['id']; ?>"
-								class="btn btn-rounded btn-lg btn-labeled"><span
-								class="btn-label icon fa fa-file-text"></span>View</a> <a
-								href="index.php/submission/index/problem/<?php echo $this->problem['id']; ?>"
-								class="btn btn-rounded btn-lg btn-labeled"><span
-								class="btn-label icon fa fa-edit pull-right btn-right"></span>Submit</a>
+							<a href="index.php/problem/pdf/id/<?php echo $this->problem['id']; ?>" target="_blank" class="btn btn-rounded btn-lg btn-labeled"><span class="btn-label icon fa fa-file-text"></span>View PDF</a> <a href="index.php/submission/index/problem/<?php echo $this->problem['id']; ?>"
+								class="btn btn-rounded btn-lg btn-labeled"><span class="btn-label icon fa fa-edit pull-right btn-right"></span>Submit</a>
 						</div>
 
 					</div>
@@ -105,8 +96,7 @@ init.push(function () {
 			</div>
 
 			<div class="col-md-4">
-				<div class="panel panel-primary panel-dark no-margin"
-					style="height: 265px;">
+				<div class="panel panel-primary panel-dark no-margin" style="height: 265px;">
 					<div class="panel-heading">
 						<span class="table-caption text-semibold"><?php echo $this->submissions; ?> Submissions</span>
 					</div>
@@ -115,8 +105,7 @@ init.push(function () {
 							<?php if($this->submissions) { ?>
 								<div id="submissions" style="height: 180px;" class="graph"></div>
 							<?php }else{ ?>
-								<i style="font-size: 120px; color: #EEE; margin-top: 30px"
-								class="fa fa-bar-chart-o"></i>
+								<i style="font-size: 120px; color: #EEE; margin-top: 30px" class="fa fa-bar-chart-o"></i>
 							<?php }?>
 						</div>
 						<div class="col-md-4"></div>
@@ -125,8 +114,7 @@ init.push(function () {
 			</div>
 
 			<div class="col-md-4">
-				<div class="panel panel-primary panel-dark no-margin"
-					style="height: 265px;">
+				<div class="panel panel-primary panel-dark no-margin" style="height: 265px;">
 					<div class="panel-heading">
 						<span class="table-caption text-semibold"><?php echo $this->problem['tried']; ?> Users Tried</span>
 					</div>
@@ -135,8 +123,7 @@ init.push(function () {
 							<?php if($this->problem['tried']) { ?>
 								<div id="tried" style="height: 180px;" class="graph"></div>
 							<?php }else{ ?>
-								<i style="font-size: 120px; color: #EEE; margin-top: 30px"
-								class="fa fa-bar-chart-o"></i>
+								<i style="font-size: 120px; color: #EEE; margin-top: 30px" class="fa fa-bar-chart-o"></i>
 							<?php }?>
 						</div>
 						<div class="col-md-4"></div>
@@ -166,97 +153,65 @@ init.push(function () {
 </script>
 <div class="panel">
 	<div class="panel-body">
-		<div id="ui-accordion" class="ui-accordion ui-widget ui-helper-reset ui-sortable" role="tablist">
-			<div class="group">
-				    <h3 id="ui-accordion-ui-accordion-header-0" class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" aria-controls="ui-accordion-ui-accordion-panel-0" aria-selected="false" aria-expanded="false" tabindex="-1">
-        				<span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
-
-        				Descrição
-
-   					</h3>
-    <div id="ui-accordion-ui-accordion-panel-0" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" style="display: none;" aria-labelledby="ui-accordion-ui-accordion-header-0" role="tabpanel" aria-hidden="true">
-
-	
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="panel">
-							<div class="panel-body">
-								<object width="100%" height="1200" type="application/x-pdf"
-									data="../data/problems/49.pdf" id="pdf_content">
-									<p>Error: You are unable to view PDF files.</p>
-								</object>
-							</div>
-						</div>
-					</div>
+		<div class="panel-group" id="accordion">
+			<div class="panel">
+				<div class="panel-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						Description
+					</a>
 				</div>
-			</div>
-	</div>
-
-			<div class="group">
-			
-			<h3 id="ui-accordion-ui-accordion-header-0" class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" aria-controls="ui-accordion-ui-accordion-panel-0" aria-selected="false" aria-expanded="false" tabindex="-1">
-        				<span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
-
-        				Ranking do Problema
-
-   					</h3>
-   			<div id="ui-accordion-ui-accordion-panel-0" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" style="display: none;" aria-labelledby="ui-accordion-ui-accordion-header-0" role="tabpanel" aria-hidden="true">
-				<div class="row">
-					<div class="col-sm-12">
+				<div id="collapseOne" class="panel-collapse collapse">
+					<div class="panel-body no-padding">
+						<iframe src="index.php/problem/pdf/id/<?php echo $this->problem['id']; ?>" style="width: 100%; height: 700px;" frameborder="0"></iframe>
+					</div> 
+				</div> 
+			</div> 
+			<div class="panel">
+				<div class="panel-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+						Ranking
+					</a>
+				</div>
+				<div id="collapseTwo" class="panel-collapse in">
+					<div class="panel-body">
 						<script>
-					init.push(function () {
-						$('#datatables-problems').dataTable();
-						$('#datatables-problems_wrapper .table-caption').text('Ranking');
-						$('#datatables-problems_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-					});
-				</script>
+							init.push(function () {
+								$('#datatables-problems').dataTable();
+								$('#datatables-problems_wrapper .table-caption').text('Ranking');
+								$('#datatables-problems_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+							});
+						</script>
 
 
-						<div class="panel">
-							<div class="panel-body">
-								<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0"
-										class="table table-striped table-bordered"
-										id="datatables-problems">
-										<thead>
-											<tr>
-												<th style="width: 100px; min-width: 100px;">Position</th>
-												<th>User</th>
-												<th style="width: 100px; min-width: 100px;">Time</th>
-												<th style="width: 100px; min-width: 100px;">Date</th>
-												<th style="width: 100px; min-width: 100px;">Language</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- 		<?php #for($i=0; $i<100; $i++){ ?>
-							<tr class="odd gradeX" onclick="document.location='index.php/p/<?php echo $problem['id']; ?>'">
-								<td><?php# echo $i+1; ?></td>
-								<td>Name</td>
-								<td>0.002</td>
-								<td>C++</td>
-							</tr>
-			-->			<?php #}?>
-						<?php $i=1; foreach($this->ranking as $rank){ ?>
-							<tr class="odd gradeX"
-												onclick="document.location='index.php/u/<?php echo $rank['user']; ?>'">
-												<td><?php echo $i++; ?></td>
-												<td><?php echo $rank['name']; ?></td>
-												<td><?php echo $rank['time']; ?></td>
-												<td><?php echo $rank['date']; ?></td>
-												<td><?php echo $rank['language']==1? "C" :"C++"; ?></td>
-											</tr>
-						<?php }?>
-						
-						
-						</tbody>
-									</table>
-								</div>
-							</div>
+						<div class="table-primary">
+							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatables-problems">
+								<thead>
+									<tr>
+										<th style="width: 100px; min-width: 100px;">Position</th>
+										<th>User</th>
+										<th style="width: 150px; min-width: 150px;">Date</th>
+										<th style="width: 80px; min-width: 80px;">Time</th>
+										<th style="width: 90px; min-width: 90px;">Language</th>
+									</tr>
+								</thead>
+								<tbody>
+												
+								<?php $i=1; foreach($this->ranking as $rank){ ?>
+									<tr class="odd gradeX" onclick="document.location='index.php/u/<?php echo $rank['user']; ?>'">
+										<td><?php echo $i++; ?></td>
+										<td><?php echo $rank['name']; ?></td>
+										<td><?php echo $rank['date']; ?></td>
+										<td><?php echo $rank['time']; ?> ms</td>
+										<td><?php echo $rank['language']==1? "C" :"C++"; ?></td>
+									</tr>
+								<?php }?>
+												
+								</tbody>
+							</table>
 						</div>
 					</div>
-				</div>
-			</div>
-			</div>
+				</div> 
+			</div> 
 		</div>
 	</div>
 </div>
