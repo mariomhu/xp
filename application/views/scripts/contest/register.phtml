@@ -41,8 +41,46 @@
 								'jq-validation-policy': 'You must check it!'
 							}
 						});
+						$("#users_select").select2().on("change", function(e) {
+				        	$('#users').val($('#users_select').val().join(','));
+				          }).on("select2-open", function(e) {
+				        	$('#users').val($('#users_select').val().join(','));
+				        });
+
+						$("#problems_select").select2().on("change", function(e) {
+				        	$('#problems').val($('#problems_select').val().join(','));
+				          }).on("select2-open", function(e) {
+				        	$('#problems').val($('#problems_select').val().join(','));
+				        })
+						
 					});
 				</script>
+				
+				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>			
+				<?php if($this->success) { ?>			
+
+					<div id="success" class="modal modal-alert modal-success fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<i class="fa fa-check-circle"></i>
+								</div>
+								<div class="modal-title"><?php echo $this->success;?></div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+								</div>
+							</div> 
+						</div> 
+					</div>
+					<script>
+						init.push(function(){ 
+							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/index"; });
+							$('#success').modal();
+						});
+					</script>
+				<?php } ?>
+				
+				
 		<!-- / Javascript -->
 
 		<div class="panel">
@@ -53,7 +91,7 @@
 
 				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>			
 
-				<form class="form-horizontal" id="jq-validation-form" method="post">
+				<form class="form-horizontal" id="jq-validation-form" method="post" enctype="multipart/form-data" id="formcontest">
 					<div class="form-group">
 						<label for="title" class="col-sm-3 control-label">Title</label>
 						<div class="col-sm-7">
@@ -109,6 +147,44 @@
 								placeholder="Description" value="<?php echo $_POST["description"]; ?>">
 						</div>
 					</div>
+					
+					
+					<div class="form-group">
+						<label for="users_select" class="col-sm-3 control-label">Users</label>
+						<div class="col-sm-7">
+							<div class="select2-primary">
+								<select multiple="multiple" class="form-control" id="users_select">
+									<?php 
+									foreach ($this->users as $user){
+										echo "<option value='$user[id]'";
+										if(isset($_POST['users'][$user['id']])) echo " selected='selected'";
+										echo ">$user[name]</option>";
+									}
+									?>
+								</select>
+								<input type="hidden" id="users" name="users"/>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="problems_select" class="col-sm-3 control-label">Problems</label>
+						<div class="col-sm-7">
+							<div class="select2-primary">
+								<select multiple="multiple" class="form-control" id="problems_select">
+									<?php 
+									foreach ($this->problems as $problem){
+										echo "<option value='$problem[id]'";
+										if(isset($_POST['problems'][$problem['id']])) echo " selected='selected'";
+										echo ">$problem[title]</option>";
+									}
+									?>
+								</select>
+								<input type="hidden" id="problems" name="problems"/>
+							</div>
+						</div>
+					</div>
+					
 										
 					<hr class="panel-wide">
 
