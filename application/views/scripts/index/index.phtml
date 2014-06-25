@@ -122,116 +122,29 @@
 					</div>
 					<div class="padding-sm-vr">
 						<ul class="list-group">
+							<?php foreach($this->users as $user){ ?>
 							<li class="list-group-item padding-sm no-border-hr no-border-t">
 								<img src="assets/demo/avatars/11.jpg" alt=""
 								class="pull-left avatar-sm" />
 								<div class="pull-left">
-									<a href="#" title="">Hidráulico Oliveira</a>
-									<div class="text-slim">UFFS</div>
+									<a href="#" title=""><?php echo $user['name']; ?></a>
+									<div class="text-slim"><?php echo $user['instituition'];?></div>
 								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div>
+								<div class="pull-right text-slim text-sm valign-bottom"><?php echo $user['date'];?></div>
 							</li>
-							<li class="list-group-item padding-sm no-border-hr"><img
-								src="assets/demo/avatars/12.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Antonio Manso Pacífico de Oliveira
-										Sossegado</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div></li>
-							<li class="list-group-item padding-sm no-border-hr"><img
-								src="assets/demo/avatars/8.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Marciano Verdinho das Antenas Longas</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div></li>
-							<li class="list-group-item padding-sm no-border-hr"><img
-								src="assets/demo/avatars/9.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Benedito Camurça Aveludado</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div></li>
-							<li class="list-group-item padding-sm no-border-hr"><img
-								src="assets/demo/avatars/10.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Um Dois Três de Oliveira Quatro</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div></li>
-							<li class="list-group-item padding-sm no-border-hr"><img
-								src="assets/demo/avatars/6.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Mimaré Índio Brazileiro de Campos</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div></li>
-							<li class="list-group-item padding-sm no-border-hr"><img
-								src="assets/demo/avatars/7.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Simplício Simplório da Simplicidade
-										Simples</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div></li>
-							<li class="list-group-item padding-sm no-border-hr"><img
-								src="assets/demo/avatars/5.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Nome Usúario</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div></li>
-							<li class="list-group-item padding-sm no-border-hr"><img
-								src="assets/demo/avatars/5.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Nome Usúario</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div></li>
-							<li class="list-group-item padding-sm no-border-hr no-border-b">
-								<img src="assets/demo/avatars/5.jpg" alt=""
-								class="pull-left avatar-sm" />
-								<div class="pull-left">
-									<a href="#" title="">Nome Usúario</a>
-									<div class="text-slim">UFFS</div>
-								</div>
-								<div class="pull-right text-slim text-sm valign-bottom">10/10/10
-									10:10</div>
-							</li>
+							<?php }?>	
 						</ul>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
-
-
 
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-success widget-support-tickets">
 					<div class="panel-heading">
 						<span class="panel-title"><i
-							class="panel-title-icon fa fa-bullhorn"></i>Submissões Recentes</span>
+							class="panel-title-icon fa fa-bullhorn"></i>Secent submissions</span>
 					</div>
 					<!-- / .panel-heading -->
 					<div class="panel-body tab-content-padding">
