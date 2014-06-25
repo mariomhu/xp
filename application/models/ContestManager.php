@@ -29,12 +29,35 @@ class Application_Model_ContestManager extends Application_Model_Manager{
 		), $id);
 	}
 	
+	public static function getContests(){
+		$select = self::select ();
+		$select->joinInner ("user", "contest.admin = user.id",array(name));
+		$db = Zend_Db_Table::getDefaultAdapter ();
+		return $db->query ( $select )->fetchAll ();
+	}
+	
 	public static function getById($id){
 		$id = intval($id);
 		$select = self::select ();
 		$select->joinInner ( "id", "contest.id = problemtag.problem and problemtag.tag = $id" );
 		$db = Zend_Db_Table::getDefaultAdapter ();
 		return $db->query ( $select )->fetchAll ();			
+	}
+	
+	public static function getByAdmin($admin){
+		$id = intval($id);
+		//$select = self::select (array("admin"=>$admin));
+		$select = "select * from contest where admin=$admin";
+		$db = Zend_Db_Table::getDefaultAdapter ();
+		return $db->query ( $select )->fetchAll ();
+	}
+	
+	public static function getByEnroled($user){
+		$select = self::select();
+		$select->joinInner("contestuser", "contest.id=contestuser.contest and contestuser.user=$user");
+		$select->joinInner("user", "contest.admin = user.id",array(name));
+		$db = Zend_Db_Table::getDefaultAdapter ();
+		return $db->query ( $select )->fetchAll ();
 	}
 	
 }

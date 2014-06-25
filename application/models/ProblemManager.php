@@ -22,12 +22,20 @@ class Application_Model_ProblemManager extends Application_Model_Manager{
 		), $id);
 	}
 	
+	
 	public static function getByTag($tag){
 		$tag = intval($tag);
 		$select = self::select ();
-		$select->joinInner ( "problemtag", "problem.id = problemtag.problem and problemtag.tag = $tag" );
+		$select->joinInner ( "problemtag", "problem.id = problemtag.problem and problemtag.tag = $tag and problem.active=1" );
 		$db = Zend_Db_Table::getDefaultAdapter ();
 		return $db->query ( $select )->fetchAll ();
+	}
+	
+	public static function select(){
+		$select = parent::select();
+		if(!Application_Model_Auth::isAdmin())
+			$select->where("active=1");
+		return $select;
 	}
 	
 	public static function getRankById($id){

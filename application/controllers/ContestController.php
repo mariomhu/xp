@@ -61,8 +61,17 @@ class ContestController extends Zend_Controller_Action {
 	}
 	
 	public function listAction() {
-	
+		$this->view->contests = Application_Model_ContestManager::getContests();
 	}
+	
+	public function myAction() {
+		$this->view->contests = Application_Model_ContestManager::getByAdmin(Application_Model_Auth::getUserId());
+	}
+	
+	public function enroledAction() {
+		$this->view->contests = Application_Model_ContestManager::getByEnroled(Application_Model_Auth::getUserId());
+	}
+	
 	
 	public function removeAction() {
 	
