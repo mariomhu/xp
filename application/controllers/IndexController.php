@@ -15,7 +15,7 @@ class IndexController extends Zend_Controller_Action {
 		//List Last 10 Users
 		$this->view->users = Application_Model_UserManager::getlast();
 		//List Last 10 Users
-		//$this->view->submissions = Application_Model_SubmissionManager::getSubmissions();
+		$this->view->submissions = Application_Model_SubmissionManager::getLast();
 	}
 		//$this->_helper->redirector('login', 'index');
 
