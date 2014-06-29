@@ -27,7 +27,7 @@
 							<tr>
 								<th>Name</th>
 								<th>Instituition</th>
-								<th>Register Date</th>
+								<th class="hidden-xs hidden-sm">Register Date</th>
 								<th style="width: 150px; min-width: 150px">Problems Solveds</th>
 							</tr>
 						</thead>
@@ -36,7 +36,7 @@
 							<tr class="odd gradeX" onclick="document.location='index.php/u/<?php echo $user['login']; ?>'">
 								<td><?php echo $user['name']; ?></td>
 								<td><?php echo $user['institution']; ?></td>
-								<td><?php echo substr($user['date'], 0, 10); ?></td>
+								<td class="hidden-xs hidden-sm"><?php echo substr($user['date'], 0, 10); ?></td>
 								<td class="text-center"><?php echo $user['solved']; ?></td>
 							</tr>
 						<?php }?>

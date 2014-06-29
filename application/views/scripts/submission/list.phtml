@@ -2,6 +2,17 @@
 	<h1>Submissions</h1>
 </div>
 
+<script>
+init.push(function(){
+	setInterval(function(){
+		$.get(document.location).success(function(data){
+			$("#data").html($("#data", data).html());
+		});
+	}, 1000);
+});
+</script>
+
+
 <div class="row">
 	<div class="col-sm-12">
 		<div class="panel">
@@ -9,7 +20,7 @@
 				<span class="panel-title">Recent Submissions</span>
 			</div>
 			<div class="panel-body">
-				<div class="table-primary">
+				<div class="table-primary" id="data">
 					<table cellpadding="0" cellspacing="0" border="0"
 						class="table table-striped table-bordered"
 						id="datatables-problems">

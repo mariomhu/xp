@@ -58,7 +58,7 @@
 				</div>
 				<script>
 						init.push(function(){ 
-							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/submission/user"; });
+							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/submission/list"; });
 							$('#success').modal();
 						});
 					</script>
@@ -68,11 +68,7 @@
 					<div class="form-group">
 						<label for="problem" class="col-sm-3 control-label">Problem</label>
 						<div class="col-sm-7">
-							<?php if(!$this->problem){?>
 							<input type="text" class="form-control" id="problem" name="problem" placeholder="Problem" value="<?php echo $_POST["problem"]; ?>">
-							<?php }else{?>
-							<input disabled="disabled" type="text" class="form-control" id="problem" name="problem" placeholder="Problem" value="<?php echo $_POST["problem"]; ?>">
-							<?php }?>
 						</div>
 					</div>
 
