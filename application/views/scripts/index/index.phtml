@@ -124,8 +124,9 @@
 						<ul class="list-group">
 							<?php foreach($this->users as $user){ ?>
 							<li class="list-group-item padding-sm no-border-hr no-border-t">
-								<img src="http://www.gravatar.com/avatar/<?php echo md5($user['email'])?>?d=mm&s=280" alt=""
-								class="pull-left avatar-sm" />
+								<img
+								src="http://www.gravatar.com/avatar/<?php echo md5($user['email'])?>?d=mm&s=280"
+								alt="" class="pull-left avatar-sm" />
 								<div class="pull-left">
 									<a href="index.php/u/<?php echo $user['login']; ?>" title=""><?php echo $user['name']; ?></a>
 									<div class="text-slim"><?php echo $user['instituition'];?></div>
@@ -151,14 +152,62 @@
 						<!-- Panel padding, without vertical padding -->
 						<div class="panel-padding no-padding-vr">
 							<?php foreach($this->submissions as $subs){ ?>
-							<div class="ticket">
-								<span class="label label-success ticket-label"><?php echo $subs['state'];?></span>
-								<a href="index.php/p/<?php echo $subs['problem']; ?>" title=""
+								<div class="ticket">
+									<?php
+								
+								if ($subs ['state'] == 0) {
+									$state = 'In Queue';
+									?>										
+											<span class="btn btn-success btn-xs btn-outline ticket-label"><?php echo $state?></span>
+									<?php };?>
+									<?php
+								
+								if ($subs ['state'] == 1) {
+									$state = 'Accepted';
+									?>										
+											<span class="label label-success ticket-label"><?php echo $state?></span>
+									<?php };?>
+									<?php
+								
+								if ($subs ['state'] == 2) {
+									$state = 'Presentation Error';
+									?>										
+											<span class="label ticket-label"><?php echo $state?></span>
+									<?php };?>
+									<?php
+								
+								if ($subs ['state'] == 3) {
+									$state = 'Wrong Wasner';
+									?>										
+											<span class="label label-danger ticket-label"><?php echo $state?></span>
+									<?php };?>
+									<?php
+								
+								if ($subs ['state'] == 4) {
+									$state = 'Compilation Error';
+									?>										
+											<span class="label label-warning ticket-label"><?php echo $state?></span>
+									<?php };?>
+									<?php
+								
+								if ($subs ['state'] == 5) {
+									$state = 'Runtime Error';
+									?>										
+											<span class="label label-warning ticket-label"><?php echo $state?></span>
+									<?php };?>	
+									<?php
+								
+								if ($subs ['state'] == 6) {
+									$state = 'Time Limit exceeded';
+									?>										
+											<span class="label label-info ticket-label"><?php echo $state?></span>
+									<?php };?>																						
+									<a href="index.php/p/<?php echo $subs['problem']; ?>" title=""
 									class="ticket-title"><?php echo $subs['title']?><span>[#<?php echo $subs['problem'];?>]</span></a>
 								<span class="ticket-info">Submitted by <a
 									href="index.php/u/<?php echo $subs['login']; ?>" title=""><?php echo $subs['name'];?>
-								</a> today
-								</span>
+									</a> <?php echo $subs['date'];?>
+									</span>
 							</div>
 							<?php }?>
 							<!-- / .ticket -->

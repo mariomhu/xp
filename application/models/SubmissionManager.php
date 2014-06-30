@@ -53,7 +53,7 @@ class Application_Model_SubmissionManager extends Application_Model_Manager{
 		$select = self::select();
 		$select->join(array('problem'), 'problem.id = submission.problem');
 		$select->join(array('user'), 'user.id = submission.user');
-		$select->limit(5);
+		$select->limit(7);
 		$select->order('submission.date desc');
 		return $db->query ($select)->fetchAll();
 	}
