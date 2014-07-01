@@ -48,7 +48,8 @@ class SubmissionController extends Zend_Controller_Action {
 	}
 		
 	public function rankAction() {
-	
+		$this->view->users = Application_Model_SubmissionManager::getRanking();
+		$this->view->title = "Ranking";
 	}
 	
 }
