@@ -124,9 +124,8 @@
 						<ul class="list-group">
 							<?php foreach($this->users as $user){ ?>
 							<li class="list-group-item padding-sm no-border-hr no-border-t">
-								<img
-								src="http://www.gravatar.com/avatar/<?php echo md5($user['email'])?>?d=mm&s=280"
-								alt="" class="pull-left avatar-sm" />
+								<img src="http://www.gravatar.com/avatar/<?php echo md5($user['email'])?>?d=mm&s=280" alt=""
+								class="pull-left avatar-sm" />
 								<div class="pull-left">
 									<a href="index.php/u/<?php echo $user['login']; ?>" title=""><?php echo $user['name']; ?></a>
 									<div class="text-slim"><?php echo $user['instituition'];?></div>
@@ -153,62 +152,48 @@
 						<div class="panel-padding no-padding-vr">
 							<?php foreach($this->submissions as $subs){ ?>
 								<div class="ticket">
-									<?php
-								
-								if ($subs ['state'] == 0) {
-									$state = 'In Queue';
-									?>										
+									<?php if($subs['state'] == 0){
+										$state = 'In Queue';
+										?>										
 											<span class="btn btn-success btn-xs btn-outline ticket-label"><?php echo $state?></span>
 									<?php };?>
-									<?php
-								
-								if ($subs ['state'] == 1) {
-									$state = 'Accepted';
-									?>										
+									<?php if($subs['state'] == 1){
+										$state = 'Accepted';
+										?>										
 											<span class="label label-success ticket-label"><?php echo $state?></span>
 									<?php };?>
-									<?php
-								
-								if ($subs ['state'] == 2) {
-									$state = 'Presentation Error';
-									?>										
+									<?php if($subs['state'] == 2){
+										$state = 'Presentation Error';
+										?>										
 											<span class="label ticket-label"><?php echo $state?></span>
 									<?php };?>
-									<?php
-								
-								if ($subs ['state'] == 3) {
-									$state = 'Wrong Wasner';
-									?>										
+									<?php if($subs['state'] == 3){
+										$state = 'Wrong Wasner';
+										?>										
 											<span class="label label-danger ticket-label"><?php echo $state?></span>
 									<?php };?>
-									<?php
-								
-								if ($subs ['state'] == 4) {
-									$state = 'Compilation Error';
-									?>										
+									<?php if($subs['state'] == 4){
+										$state = 'Compilation Error';
+										?>										
 											<span class="label label-warning ticket-label"><?php echo $state?></span>
 									<?php };?>
-									<?php
-								
-								if ($subs ['state'] == 5) {
-									$state = 'Runtime Error';
-									?>										
-											<span class="label label-warning ticket-label"><?php echo $state?></span>
+									<?php if($subs['state'] == 5){
+										$state = 'Runtime Error';
+										?>										
+											<span class="label label- ticket-label"><?php echo $state?></span>
 									<?php };?>	
-									<?php
-								
-								if ($subs ['state'] == 6) {
-									$state = 'Time Limit exceeded';
-									?>										
+									<?php if($subs['state'] == 6){
+										$state = 'Time Limit exceeded';
+										?>										
 											<span class="label label-info ticket-label"><?php echo $state?></span>
 									<?php };?>																						
 									<a href="index.php/p/<?php echo $subs['problem']; ?>" title=""
-									class="ticket-title"><?php echo $subs['title']?><span>[#<?php echo $subs['problem'];?>]</span></a>
-								<span class="ticket-info">Submitted by <a
-									href="index.php/u/<?php echo $subs['login']; ?>" title=""><?php echo $subs['name'];?>
+										class="ticket-title"><?php echo $subs['title']?><span>[#<?php echo $subs['problem'];?>]</span></a>
+									<span class="ticket-info">Submitted by <a
+										href="index.php/u/<?php echo $subs['login']; ?>" title=""><?php echo $subs['name'];?>
 									</a> <?php echo $subs['date'];?>
 									</span>
-							</div>
+								</div>
 							<?php }?>
 							<!-- / .ticket -->
 						</div>
@@ -240,49 +225,16 @@
 						<div
 							class="stat-cell col-sm-4 padding-sm-hr bordered no-border-r valign-top">
 							<ul class="list-group no-margin">
+								<?php foreach ($this->bestsubmissions as $bsubs){?>
 								<li
 									class="list-group-item no-border padding-xs-hr no-bg no-border-radius">
 									<img src="assets/demo/avatars/5.jpg" alt="" class="avatar-xm" />
-									<span class="text-bg">1º</span> <span class="padding-xs-hr">Documents</span>
+									<span class="text-bg">1º</span> <span class="padding-xs-hr"><?php echo $bsubs['problem']; ?></span>
 									<div class="pull-right points">
 										<span class="label label-success">34</span>
 									</div>
 								</li>
-								<li class="list-group-item no-border-hr padding-xs-hr no-bg"><img
-									src="assets/demo/avatars/5.jpg" alt="" class="avatar-xm" /> <span
-									class="text-bg">1º</span> <span class="padding-xs-hr">Documents</span>
-									<div class="pull-right points">
-										<span class="label label-success">34</span>
-									</div></li>
-								<li
-									class="list-group-item no-border-hr padding-xs-hr padding-xs-vr no-bg">
-									<img src="assets/demo/avatars/5.jpg" alt="" class="avatar-xm" />
-									<span class="text-bg">1º</span> <span class="padding-xs-hr">Documents</span>
-									<div class="pull-right points">
-										<span class="label label-success">34</span>
-									</div>
-								</li>
-								<li class="list-group-item no-border-hr padding-xs-hr no-bg"><span
-									class="text-bg padding-xs-hr">4º</span> Documents <span
-									class="label label-success pull-right">34</span></li>
-								<li class="list-group-item no-border-hr padding-xs-hr no-bg"><span
-									class="text-bg padding-xs-hr">5º</span> Documents <span
-									class="label label-success pull-right">34</span></li>
-								<li class="list-group-item no-border-hr padding-xs-hr no-bg"><span
-									class="text-bg padding-xs-hr">6º</span> Documents <span
-									class="label label-success pull-right">34</span></li>
-								<li class="list-group-item no-border-hr padding-xs-hr no-bg"><span
-									class="text-bg padding-xs-hr">7º</span>Documents <span
-									class="label label-success pull-right">34</span></li>
-								<li class="list-group-item no-border-hr padding-xs-hr no-bg"><span
-									class="text-bg padding-xs-hr">8º</span> Documents <span
-									class="label label-success pull-right">34</span></li>
-								<li class="list-group-item no-border-hr padding-xs-hr no-bg"><span
-									class="text-bg padding-xs-hr">9º</span> Documents <span
-									class="label label-success pull-right">34</span></li>
-								<li class="list-group-item no-border padding-xs-hr no-bg"><span
-									class="text-bg padding-xs-hr">10º</span> Documents <span
-									class="label label-success pull-right">34</span></li>
+								<?php }?>
 							</ul>
 						</div>
 					</div>

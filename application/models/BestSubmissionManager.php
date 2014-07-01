@@ -25,4 +25,12 @@ class Application_Model_BestSubmissionManager extends Application_Model_Manager{
 			"submission" => $values['submission']
 		), $id);
 	}
+	
+	public static function getBest(){
+			$db = Zend_Db_Table::getDefaultAdapter();
+			$select = self::select();
+			$select->limit(10);
+			$select->order('date desc');
+			return $db->query ($select)->fetchAll();
+		}
 }
