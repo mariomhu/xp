@@ -27,10 +27,12 @@ class Application_Model_BestSubmissionManager extends Application_Model_Manager{
 	}
 	
 	public static function getBest(){
-			$db = Zend_Db_Table::getDefaultAdapter();
 			$select = self::select();
 			$select->limit(10);
-			$select->order('date desc');
-			return $db->query ($select)->fetchAll();
+			$select = "Select name, login, email, user.id as user_id, count(bestsubmission.user) as con from
+				user join bestsubmission on user.id=bestsubmission.user
+				group by bestsubmission.user order by con desc";
+			$db = Zend_Db_Table::getDefaultAdapter ();
+			return $db->query ( $select )->fetchAll ();
 		}
 }

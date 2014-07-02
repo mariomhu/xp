@@ -225,13 +225,14 @@
 						<div
 							class="stat-cell col-sm-4 padding-sm-hr bordered no-border-r valign-top">
 							<ul class="list-group no-margin">
-								<?php foreach ($this->bestsubmissions as $bsubs){?>
+								<?php foreach ($this->bestsubmissions as $bsubs){ $i += 1?>
 								<li
 									class="list-group-item no-border padding-xs-hr no-bg no-border-radius">
-									<img src="assets/demo/avatars/5.jpg" alt="" class="avatar-xm" />
-									<span class="text-bg">1º</span> <span class="padding-xs-hr"><?php echo $bsubs['problem']; ?></span>
+									<img src="http://www.gravatar.com/avatar/<?php echo md5($bsubs['email'])?>?d=mm&s=280" alt="" class="avatar-xm" />
+									<span class="text-bg"><?php echo $i;?>º</span>
+									<span class="padding-xs-hr"><a href="index.php/u/<?php echo $bsubs['login']; ?>" title=""><?php echo $bsubs['name']; ?></a></span>
 									<div class="pull-right points">
-										<span class="label label-success">34</span>
+										<span class="label label-success"><?php echo $bsubs['con']?></span>
 									</div>
 								</li>
 								<?php }?>
