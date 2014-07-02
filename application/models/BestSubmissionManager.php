@@ -31,7 +31,7 @@ class Application_Model_BestSubmissionManager extends Application_Model_Manager{
 			$select->limit(10);
 			$select = "Select name, login, email, user.id as user_id, count(bestsubmission.user) as con from
 				user join bestsubmission on user.id=bestsubmission.user
-				group by bestsubmission.user order by con desc";
+				group by bestsubmission.user order by con desc, name";
 			$db = Zend_Db_Table::getDefaultAdapter ();
 			return $db->query ( $select )->fetchAll ();
 		}

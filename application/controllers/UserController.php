@@ -47,7 +47,7 @@ class UserController extends Zend_Controller_Action {
 	}
 	public function editAction() {
 		Application_Model_Auth::checkIsUser ();
-		if ($this->getParam ( 'id' )) {
+		if ($this->getParam ( 'id' ) && Application_Model_Auth::isAdmin()) {
 			Application_Model_Auth::checkIsAdmin ();
 			$id = $this->getParam ( 'id' );
 			$admin = true;

@@ -41,7 +41,7 @@
 						</thead>
 						<tbody>
 						<?php foreach($this->problems as $problem){ ?>
-							<tr class="odd gradeX" onclick="document.location='index.php/p/<?php echo $problem['id']; ?>">
+							<tr class="odd gradeX" onclick="document.location='index.php/p/<?php echo $problem['id']; ?>'">
 								<td><?php echo $problem['id']; ?></td>
 								<td><?php echo $problem['title']; ?></td>
 								<td class="hidden-xs hidden-sm hidden-md"><?php echo $problem['from']; ?></td>

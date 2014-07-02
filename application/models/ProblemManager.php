@@ -62,5 +62,13 @@ class Application_Model_ProblemManager extends Application_Model_Manager{
 		$select->order('date desc');
 		return $db->query ($select)->fetchAll();
 	}
+	
+	public static function search($word){
+		$select = self::select ();
+		$select-> where("id = ?",$word);
+		$select-> orWhere("title LIKE ?",'%'.$word.'%');
+		$db = Zend_Db_Table::getDefaultAdapter ();
+		return $db->query ( $select )->fetchAll ();
+	}
 }
 

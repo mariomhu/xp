@@ -59,9 +59,9 @@ class Application_Model_SubmissionManager extends Application_Model_Manager{
 	}
 	
 	public static function getRanking(){
-		$select = "Select name, login, user.id as user_id, count(bestsubmission.user) as con from
+		$select = "Select name, login, institution, count(bestsubmission.user) as con from
 				user join bestsubmission on user.id=bestsubmission.user
-				group by bestsubmission.user order by con desc";
+				group by bestsubmission.user order by con desc,name";
 		$db = Zend_Db_Table::getDefaultAdapter ();
 		return $db->query ( $select )->fetchAll ();
 	}

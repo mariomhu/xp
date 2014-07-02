@@ -15,12 +15,15 @@ class ProblemController extends Zend_Controller_Action {
 		
 	}
 	public function listAction() {
-		$tag = intval ( $this->getParam ( "tag" ) );
+		$tag = intval ( $this->getParam ( "tag" ));
 		if ($tag) {
 			$this->view->problems = Application_Model_ProblemManager::getByTag($tag);
 			$tag = Application_Model_TagManager::get ( $tag );
 			$this->view->title = "Problems - $tag[name]";
-		} else {
+		} elseif($_POST['search']) {
+			$this->view->title = "Search \"$_POST[search]\"";
+			$this->view->problems = Application_Model_ProblemManager::search($_POST['search']);
+		}else{
 			$this->view->title = "All Problem";
 			$this->view->problems = Application_Model_ProblemManager::getAll ();
 		}

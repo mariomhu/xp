@@ -16,10 +16,9 @@
 					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatables">
 						<thead>
 							<tr>
-								<th style="width: 80px; min-width: 80px;">Number</th>
-								<th style="width: 80px; min-width: 80px;">Id</th>
+								<th style="width: 100px; min-width: 100px;">Number</th>
 								<th>User</th>
-								<th style="width: 100px; min-width: 100px;">Problems Solved</th>
+								<th style="width: 100px; min-width: 100px;">Problems</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -28,8 +27,9 @@
 							<tr class="odd gradeX"
 								>
 								<td><?php echo $i; ?></td>
-								<td><?php echo $user['user_id']; ?> </td>
-								<td><a href="index.php/u/<?php echo $user['login']; ?>"><?php echo $user['name']; ?></a></td>
+								<td><a href="index.php/u/<?php echo $user['login']; ?>">
+									<?php echo ($user['institution']?('['.$user['institution'].'] '):'') . $user['name']; ?>
+								</a></td>
 								<td><?php echo $user['con']; ?> </td> 
 								
 							</tr>

@@ -22,14 +22,14 @@
 				<div class="visible-xs clearfix form-group-margin"></div>
 
 				<!-- Search field -->
-				<form action="" class="pull-right col-xs-12 col-sm-6">
+				<form action="index.php/problem/list" method="post" class="pull-right col-xs-12 col-sm-6">
 					<div class="input-group no-margin">
 						<span class="input-group-addon"
 							style="border: none; background: #fff; background: rgba(0, 0, 0, .05);"><i
 							class="fa fa-search"></i></span> <input type="text"
 							placeholder="Search Problems..."
 							class="form-control no-padding-hr"
-							style="border: none; background: #fff; background: rgba(0, 0, 0, .05);">
+							style="border: none; background: #fff; background: rgba(0, 0, 0, .05);" name="search">
 					</div>
 				</form>
 			</div>
@@ -152,41 +152,16 @@
 						<div class="panel-padding no-padding-vr">
 							<?php foreach($this->submissions as $subs){ ?>
 								<div class="ticket">
-									<?php if($subs['state'] == 0){
-										$state = 'In Queue';
-										?>										
-											<span class="btn btn-success btn-xs btn-outline ticket-label"><?php echo $state?></span>
-									<?php };?>
-									<?php if($subs['state'] == 1){
-										$state = 'Accepted';
-										?>										
-											<span class="label label-success ticket-label"><?php echo $state?></span>
-									<?php };?>
-									<?php if($subs['state'] == 2){
-										$state = 'Presentation Error';
-										?>										
-											<span class="label ticket-label"><?php echo $state?></span>
-									<?php };?>
-									<?php if($subs['state'] == 3){
-										$state = 'Wrong Wasner';
-										?>										
-											<span class="label label-danger ticket-label"><?php echo $state?></span>
-									<?php };?>
-									<?php if($subs['state'] == 4){
-										$state = 'Compilation Error';
-										?>										
-											<span class="label label-warning ticket-label"><?php echo $state?></span>
-									<?php };?>
-									<?php if($subs['state'] == 5){
-										$state = 'Runtime Error';
-										?>										
-											<span class="label label- ticket-label"><?php echo $state?></span>
-									<?php };?>	
-									<?php if($subs['state'] == 6){
-										$state = 'Time Limit exceeded';
-										?>										
-											<span class="label label-info ticket-label"><?php echo $state?></span>
-									<?php };?>																						
+									<?php 
+									if($subs['state']==0 && $subs['date_judge']) echo '<span class="label label-info ticket-label">On Judgement</span>';
+									else if($subs['state']==0) echo '<span class="label label-info ticket-label">In Queue</span>';
+									else if($subs['state']==1) echo '<span class="label label-success ticket-label">Accepted</span>';
+									else if($subs['state']==2) echo '<span class="label label-danger ticket-label">Presentation Error</span>';
+									else if($subs['state']==3) echo '<span class="label label-danger ticket-label">Wrong Answer</span>';
+									else if($subs['state']==4) echo '<span class="label label-danger ticket-label">Compilation Error</span>';
+									else if($subs['state']==5) echo '<span class="label label-danger ticket-label">Runtime Error</span>';
+									else if($subs['state']==6) echo '<span class="label label-danger ticket-label">Time Limit Exceded</span>';
+									?>																	
 									<a href="index.php/p/<?php echo $subs['problem']; ?>" title=""
 										class="ticket-title"><?php echo $subs['title']?><span>[#<?php echo $subs['problem'];?>]</span></a>
 									<span class="ticket-info">Submitted by <a
@@ -225,7 +200,7 @@
 						<div
 							class="stat-cell col-sm-4 padding-sm-hr bordered no-border-r valign-top">
 							<ul class="list-group no-margin">
-								<?php foreach ($this->bestsubmissions as $bsubs){ $i += 1?>
+								<?php foreach ($this->bestsubmissions as $bsubs){ $i++;?>
 								<li
 									class="list-group-item no-border padding-xs-hr no-bg no-border-radius">
 									<img src="http://www.gravatar.com/avatar/<?php echo md5($bsubs['email'])?>?d=mm&s=280" alt="" class="avatar-xm" />
