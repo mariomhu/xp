@@ -205,7 +205,7 @@
 									class="list-group-item no-border padding-xs-hr no-bg no-border-radius">
 									<img src="http://www.gravatar.com/avatar/<?php echo md5($bsubs['email'])?>?d=mm&s=280" alt="" class="avatar-xm" />
 									<span class="text-bg"><?php echo $i;?>º</span>
-									<span class="padding-xs-hr"><a href="index.php/u/<?php echo $bsubs['login']; ?>" title=""><?php echo $bsubs['name']; ?></a></span>
+									<span class="padding-xs-hr"><a href="index.php/u/<?php echo $bsubs['login']; ?>" title=""><?php if($bsubs['institution']){ echo '<span>['?><?php echo $bsubs['institution']; echo ']</span>';}?> <?php echo $bsubs['name']; ?></a></span>
 									<div class="pull-right points">
 										<span class="label label-success"><?php echo $bsubs['con']?></span>
 									</div>
