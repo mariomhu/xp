@@ -61,72 +61,156 @@ class Application_Model_ContestManager extends Application_Model_Manager{
 	}
 	
 	/*public static function getContestRank(){
+		--Critérios de ordenação: # de soluções, soma dos tempos
+
 		select u.name,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 1) a,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 2) b,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 3) c,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 4) d,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 5) e,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 6) f,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 7) g,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 8) h,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 9) i,
-		(select count(1)
-		from submission s
-		where s.problem = cp.problem
-		and s.date between c.begin and c.end
-		and s.user = cu.user
-		and s.problem = 10) j
-		from contestproblem cp
-		join contest c on cp.contest = c.id
-		join contestuser cu on cp.contest = cu.contest
-		join user u on cu.user = u.id
-		where c.id = 5				
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 1
+		   and s.state = 1) a_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 1
+		   and s.state <> 1) a_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 2
+		   and s.state = 1) b_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 2
+		   and s.state <> 1) b_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 3
+		   and s.state = 1) c_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 3
+		   and s.state <> 1) c_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 4
+		   and s.state = 1) d_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 4
+		   and s.state <> 1) d_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 5
+		   and s.state = 1) e_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 5
+		   and s.state <> 1) e_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 6
+		   and s.state = 1) f_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 6
+		   and s.state <> 1) f_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 7
+		   and s.state = 1) g_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 7
+		   and s.state <> 1) g_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 8
+		   and s.state = 1) h_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 8
+		   and s.state <> 1) h_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 9
+		   and s.state = 1) i_accept,
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 9
+		   and s.state <> 1) i_reject,		   
+       (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 10
+		   and s.state = 1) j_accept,
+	   (select count(1) 
+          from submission s 
+         where s.problem = cp.problem
+           and s.date between c.begin and c.end
+		   and u.id = s.user
+		   and s.problem = 10
+		   and s.state <> 1) j_reject	
+  from contestproblem cp
+   join contest c on cp.contest = c.id
+   join contestuser cu on cp.contest = cu.contest
+   join user u on cu.user = u.id   
+where c.id = 5
+order by a_accept + b_accept
+				
 	}*/
 }
 
