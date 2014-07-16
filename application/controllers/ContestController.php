@@ -12,7 +12,9 @@ class ContestController extends Zend_Controller_Action {
 		
 // 		$this->view->tags = Application_Model_TagManager::getByProblem($id);
 		
-	
+		$this->view->contests = Application_Model_ContestManager::getContests();
+		
+		$this->view->problems = Application_Model_ProblemManager::getAll ();
 	}
 	
 	public function registerAction() {

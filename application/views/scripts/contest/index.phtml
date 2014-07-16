@@ -11,36 +11,94 @@
 		<div class="panel-body">
 			<div class="col-sm-12">
 
-				<ul class="nav nav-tabs bs-tabdrop-example">
-					<li class=""><a href="#bs-tabdrop-tab1" data-toggle="tab">Section 1</a></li>
-					<li class=""><a href="#bs-tabdrop-tab2" data-toggle="tab">Section 2</a></li>
+				<ul class="nav nav-tabs bs-tabdrop-example" show>
+					<li class=""><a href="#bs-tabdrop-tab1" data-toggle="tab">Participants</a></li>
+					<li class=""><a href="#bs-tabdrop-tab2" data-toggle="tab">Problems</a></li>
 				</ul>
 				<div class="tab-content tab-content-bordered">
 					<div class="tab-pane" id="bs-tabdrop-tab1">
 						<div class="table-primary">
 							<table cellpadding="0" cellspacing="0" border="0"
-								class="table table-striped table-bordered" id="datatables-users">
+								class="table table-striped table-bordered"
+								id="datatables-problems">
 								<thead>
 									<tr>
-										<th>Name</th>
-										<th>Instituition</th>
-										<th class="hidden-xs hidden-sm">Register Date</th>
-										<th style="width: 150px; min-width: 150px">Problems Solveds</th>
+										<th style="width: 80px; min-width: 250px;">User</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">A</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">B</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">C</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">D</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">E</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">F</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">G</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">H</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">I</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">J</th>
+										<th style="width: 60px; min-width: 60px; text-align:center;">Punctuation</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>name</td>
-										<td>institution</td>
-										<td>date</td>
-										<td>solved</td>
-									</tr>
+										<td><a href="#">User</a></td>
+										<td class="text-center"><a href="#">A</a></td>
+										<td class="text-center"><a href="#">B</a></td>
+										<td class="text-center"><a href="#">C</a></td>
+										<td class="text-center"><a href="#">D</a></td>
+										<td class="text-center"><a href="#">E</a></td>
+										<td class="text-center"><a href="#">F</a></td>
+										<td class="text-center"><a href="#">G</a></td>
+										<td class="text-center"><a href="#">H</a></td>
+										<td class="text-center"><a href="#">I</a></td>
+										<td class="text-center"><a href="#">J</a></td>
+										<td class="text-center"><a href="#">Punctuation</a></td>									
+									</tr>					
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<div class="tab-pane" id="bs-tabdrop-tab2">
-						<p>Howdy, I'm in Section 2.</p>
+						<div class="table-primary">
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatables-problems">
+						<thead>
+							<tr>
+								<th style="width: 60px; min-width: 60px;">Number</th>
+								<th>Title</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php foreach($this->problems as $problem){ ?>
+							<tr class="odd gradeX" onclick="document.location='index.php/p/<?php echo $problem['id']; ?>'">
+								<td><?php echo $problem['id']; ?></td>
+								<td><?php echo $problem['title']; ?></td>
+								<td class="hidden-xs hidden-sm hidden-md"><?php echo $problem['from']; ?></td>
+								<?php 
+									$total = $problem['ac']+$problem['pe']+$problem['wa']+$problem['ce']+$problem['re']+$problem['tl'];
+									$ratio = $total?number_format($problem['ac']/$total*100, 2):0;
+									$label = $total?($ratio<10?"0":"").$ratio."% ($problem[ac]/$total)":"0/0";
+									if($ratio <= 20) $class = "progress-bar-danger";
+									else if($ratio <= 40) $class = "progress-bar-warning";
+									else if($ratio <= 60) $class = "";
+									else if($ratio <= 80) $class = "progress-bar-info";
+									else $class = "progress-bar-success";
+								?>
+								<td class="hidden-xs hidden-sm"><?php echo $label;?><div class="progress no-margin" style="height: 6px;"><div class="progress-bar <?php echo $class;?>" style="width: <?php echo $ratio;?>%;"></div></div></td>
+								<?php 
+									$total = $problem['tried'];
+									$ratio = $total?number_format($problem['solved']/$total*100, 2):0;
+									$label = $total?($ratio<10?"0":"").$ratio."% ($problem[solved]/$total)":"0/0";
+									if($ratio <= 20) $class = "progress-bar-danger";
+									else if($ratio <= 40) $class = "progress-bar-warning";
+									else if($ratio <= 60) $class = "";
+									else if($ratio <= 80) $class = "progress-bar-info";
+									else $class = "progress-bar-success";
+								?>
+								<td><?php echo $label;?><div class="progress no-margin" style="height: 6px;"><div class="progress-bar <?php echo $class;?>" style="width: <?php echo $ratio;?>%;"></div></div></td>
+								<td  class="hidden-xs hidden-sm hidden-md"><?php echo substr($problem['date'], 0, 10); ?></td>
+							</tr>
+						<?php }?>
+						</tbody>
+					</table>
+				</div>
 					</div>
 				</div>
 
