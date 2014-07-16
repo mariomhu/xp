@@ -3,7 +3,7 @@
 class ContestController extends Zend_Controller_Action {
 
 	public function indexAction() {
-// 		$id = $this->getParam ( "id" );
+ 		$id = $this->getParam ( "id" );
 		
 // 		$problem = Application_Model_::get( $id );
 		
@@ -12,9 +12,9 @@ class ContestController extends Zend_Controller_Action {
 		
 // 		$this->view->tags = Application_Model_TagManager::getByProblem($id);
 		
-		$this->view->contests = Application_Model_ContestManager::getContests();
+		$this->view->contests = Application_Model_ContestProblemManager::getProblemsByContest($id);
 		
-		$this->view->problems = Application_Model_ProblemManager::getAll ();
+		$this->view->contestsuser = Application_Model_ContestUserManager::getUsersByContest($id);
 	}
 	
 	public function registerAction() {

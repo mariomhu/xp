@@ -18,7 +18,7 @@
 								<th style="width: 80px; min-width: 80px;">Number</th>
 								<th>Title</th>
 								<th>Description</th>
-							
+								<th style="width: 150px; min-width: 150px;">Admin</th>
 								<th style="width: 80px; min-width: 80px;">Begin</th>
 								<th style="width: 80px; min-width: 80px;">End</th>
 							</tr>
@@ -29,9 +29,9 @@
 							<tr class="odd gradeX"
 								>
 								<td><?php echo $contest['id']; ?></td>
-								<td><a href="index.php/contest/#"><?php echo $contest['title']; ?></a></td>
+								<td><a href="index.php/contest/index/id/<?php echo $contest['id']; ?>"><?php echo $contest['title']; ?></a></td>
 								<td><a href="index.php/contest/#"><?php echo $contest['description']; ?></a></td>
-								
+								<td><?php echo $contest['name']; ?></td>
 								<td><?php echo $contest['begin']; ?></td> 
 								<td><?php echo $contest['end']; ?></td>
 								
