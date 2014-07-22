@@ -144,7 +144,6 @@
 
 						<img src="http://www.gravatar.com/avatar/<?php echo md5($user['email'])?>?d=mm&s=280" alt="" class="">
 						<div class="btn-group">
-							<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a> 
 							<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a> 
 							<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-cog"></i></a> 
 							<a href="index.php/index/logout" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
@@ -183,9 +182,16 @@
 					<li class="mm-dropdown"><a href="index.php"><i class="menu-icon fa fa-outdent"></i><span class="mm-text">Contests</span></a>
 						<ul>
 							<li><a tabindex="-1" href="index.php/contest/list"><span class="mm-text">All Contests <span class="label label-success"></span></span></a></li>
-							<li><a tabindex="-1" href="index.php/contest/enroled"><span class="mm-text">Enroled Contests <span class="label label-success"></span></span></a></li>
-							<li><a tabindex="-1" href="index.php/contest/my"><span class="mm-text">My Contests <span class="label label-success"></span></span></a></li>
-							<li><a tabindex="-1" href="index.php/contest/register"><span class="mm-text">Create Contest <span class="label label-success"></span></span></a></li>
+							<?php
+								if (Application_Model_Auth::getUser ()) {
+									$user = Application_Model_Auth::getUser ();
+								}
+								?>
+							<?php if($user) {?>
+								<li><a tabindex="-1" href="index.php/contest/enroled"><span class="mm-text">Enroled Contests <span class="label label-success"></span></span></a></li>
+								<li><a tabindex="-1" href="index.php/contest/my"><span class="mm-text">My Contests <span class="label label-success"></span></span></a></li>
+								<li><a tabindex="-1" href="index.php/contest/register"><span class="mm-text">Create Contest <span class="label label-success"></span></span></a></li>
+							<?php }?>
 						</ul></li>
 
 					<li class="mm-dropdown <?php active('problem', null, null, true); ?>"><a href="index.php/problem/list"><i class="menu-icon fa fa-flask"></i><span class="mm-text">Problems</span><span class="label label-success"></span></a>
