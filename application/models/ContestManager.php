@@ -23,6 +23,7 @@ class Application_Model_ContestManager extends Application_Model_Manager{
 			"title" => $values['title'],
 			"begin" => $values['begin'],
 			"end" => $values['end'],
+			"penalization" => $values['penalization'],
 			"blind" => $values['blind'],
 			"frozen" => $values['frozen'],
 			"description" => $values['description']

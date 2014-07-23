@@ -17,5 +17,10 @@ class Application_Model_ContestUserManager extends Application_Model_Manager{
 		$select->joinInner('user', "contestuser.user = user.id and contestuser.contest = $contest");
 		return $db->query ($select)->fetchAll();
 	}
+	
+	public static function removeByContest($contest){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		$db->delete(static::$table, "contest = ".intval($contest));
+	}
 }
 

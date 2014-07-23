@@ -1,0 +1,212 @@
+
+<div class="page-header">
+	<h1>Contest</h1>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<script>
+					init.push(function () {		
+						
+						jQuery.validator.addMethod("alphanumeric", function(value, element) {
+							return this.optional(element) || /^\w+$/i.test(value);
+						}, "Letters, numbers, and underscores only please");
+						
+						$("#jq-validation-form").validate({
+							ignore: '.ignore, .select2-input',
+							focusInvalid: false,
+							rules: {
+								'title': {
+									required: true
+								},
+								'begin': {
+									required: true
+								},
+								'end': {
+									required: true
+								},
+								'blind': {
+									required: true
+								},		
+								'frozen': {
+									required: true
+								},
+								'description': {
+									required: false
+								},								
+								'jq-validation-policy': {
+									required: true
+								},
+							},
+							messages: {
+								'jq-validation-policy': 'You must check it!'
+							}
+						});
+						$('#active').switcher({
+							theme: 'square',
+							on_state_content: '<span class="fa fa-check"></span>',
+							off_state_content: '<span class="fa fa-times"></span>'
+						});
+						$("#users_select").select2().on("change", function(e) {
+				        	$('#users').val($('#users_select').val().join(','));
+				          }).on("select2-open", function(e) {
+				        	$('#users').val($('#users_select').val().join(','));
+				        });
+
+						$("#problems_select").select2().on("change", function(e) {
+				        	$('#problems').val($('#problems_select').val().join(','));
+				          }).on("select2-open", function(e) {
+				        	$('#problems').val($('#problems_select').val().join(','));
+				        })
+						
+					});
+				</script>
+				
+				<?php if($this->error) echo "<div class='note note-danger'>$this->error</div>"; ?>			
+				<?php if($this->success) { ?>			
+
+					<div id="success" class="modal modal-alert modal-success fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<i class="fa fa-check-circle"></i>
+								</div>
+								<div class="modal-title"><?php echo $this->success;?></div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+								</div>
+							</div> 
+						</div> 
+					</div>
+					<script>
+						init.push(function(){ 
+							$('#success').on('hide.bs.modal',function(e){ document.location = "index.php/"; });
+							$('#success').modal();
+						});
+					</script>
+				<?php } ?>
+		<!-- / Javascript -->
+
+		<div class="panel">
+			<div class="panel-heading">
+				<span class="panel-title">Change</span>
+			</div>
+			<div class="panel-body">
+
+				<form class="form-horizontal" id="jq-validation-form" method="post" enctype="multipart/form-data" id="formcontest">
+					<div class="form-group">
+						<label for="title" class="col-sm-3 control-label">Title</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="title" name="title"
+								placeholder="Title" value="<?php echo $_POST["title"]; ?>">
+						</div>
+					</div>			
+
+					<div class="form-group">
+						<label for="begin" class="col-sm-3 control-label">Begin</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="begin" name="begin"
+								placeholder="Begin" value="<?php echo $_POST["begin"]; ?>">
+						</div>
+					</div>	
+					
+					<div class="form-group">
+						<label for="end" class="col-sm-3 control-label">End</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="end" name="end"
+								placeholder="End" value="<?php echo $_POST["end"]; ?>">
+						</div>
+					</div>		
+
+					<div class="form-group">
+						<label for="penalization" class="col-sm-3 control-label">Penalization</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="penalization" name="penalization"
+								placeholder="Penalization" value="<?php echo $_POST["penalization"]; ?>">
+						</div>
+					</div>							
+					
+					<div class="form-group">
+						<label for="blind" class="col-sm-3 control-label">Blind</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="blind" name="blind"
+								placeholder="Blind" value="<?php echo $_POST["blind"]; ?>">
+						</div>
+					</div>						
+
+					<div class="form-group">
+						<label for="frozen" class="col-sm-3 control-label">Frozen</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="frozen" name="frozen"
+								placeholder="Frozen" value="<?php echo $_POST["frozen"]; ?>">
+						</div>
+					</div>											
+
+					<div class="form-group">
+						<label for="description" class="col-sm-3 control-label">Description</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="description" name="description"
+								placeholder="Description" value="<?php echo $_POST["description"]; ?>">
+						</div>
+					</div>
+										
+					<div class="form-group">
+						<label for="users_select" class="col-sm-3 control-label">Users</label>
+						<div class="col-sm-7">
+							<div class="select2-primary">
+								<select multiple="multiple" class="form-control" id="users_select">
+									<?php 
+									foreach ($this->users as $user){
+										echo "<option value='$user[id]'";
+										if(isset($_POST['users'][$user['id']])) echo " selected='selected'";
+										echo ">$user[name]</option>";										
+									}
+									?>
+								</select>
+								<input type="hidden" id="users" name="users"/>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="problems_select" class="col-sm-3 control-label">Problems</label>
+						<div class="col-sm-7">
+							<div class="select2-primary">
+								<select multiple="multiple" class="form-control" id="problems_select">
+									<?php 
+									foreach ($this->problems as $problem){
+										echo "<option value='$problem[id]'";
+										if(isset($_POST['problems'][$problem['id']])) echo " selected='selected'";
+										echo ">$problem[title]</option>";
+									}
+									?>
+								</select>
+								<input type="hidden" id="problems" name="problems"/>
+							</div>
+						</div>
+					</div>
+					
+										
+					<hr class="panel-wide">
+
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-9">
+							<div class="checkbox">
+								<label> <input type="checkbox" name="jq-validation-policy"
+									id="jq-validation-policy" class="px"> <span class="lbl">Confirm
+										policy</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-9">
+							<button type="submit" class="btn btn-primary">Confirm</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
