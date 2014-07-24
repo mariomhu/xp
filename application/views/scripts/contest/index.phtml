@@ -38,20 +38,20 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach($this->contestsuser as $contestuser){ ?>
+									<?php foreach($this->contestrank as $user){ ?>
 									<tr>
-										<td><a href="index.php/user/index/id/<?php echo $contestuser['login']; ?>"><?php echo $contestuser['name']; ?></a></td>
-										<td class="text-center"><a href="#">A</a></td>
-										<td class="text-center"><a href="#">B</a></td>
-										<td class="text-center"><a href="#">C</a></td>
-										<td class="text-center"><a href="#">D</a></td>
-										<td class="text-center"><a href="#">E</a></td>
-										<td class="text-center"><a href="#">F</a></td>
-										<td class="text-center"><a href="#">G</a></td>
-										<td class="text-center"><a href="#">H</a></td>
-										<td class="text-center"><a href="#">I</a></td>
-										<td class="text-center"><a href="#">J</a></td>
-										<td class="text-center"><a href="#">Punctuation</a></td>
+										<td><a href="index.php/user/index/id/<?php echo $user['name']; ?>"><?php echo $contestuser['name']; ?></a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">-</a></td>
+										<td class="text-center"><a href="#">Score</a></td>
 									</tr>
 									<?php }?>
 								</tbody>

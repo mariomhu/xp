@@ -15,6 +15,13 @@ class ContestController extends Zend_Controller_Action {
 		$this->view->contests = Application_Model_ContestProblemManager::getProblemsByContest($id);
 		
 		$this->view->contestsuser = Application_Model_ContestUserManager::getUsersByContest($id);
+		
+		$i=1;
+		$problems;
+		foreach ($this->view->contests as $problem) {
+			$problems[i]=$problem['id'];
+		}
+		$this->view->contestrank = Application_Model_ContestManager::getContestRank($problemas, $id);
 	}
 	
 	public function registerAction() {

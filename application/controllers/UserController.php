@@ -17,7 +17,7 @@ class UserController extends Zend_Controller_Action {
 	}
 	
 	public function listAction() {
-		$this->view->users = Application_Model_UserManager::getAll ( null, 'name' );
+		$this->view->users = Application_Model_UserManager::getUsers();//All ( null, 'name' );
 	}
 	
 	public function registerAction() {

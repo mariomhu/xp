@@ -36,5 +36,17 @@ class Application_Model_UserManager extends Application_Model_Manager{
 		$select->order('date desc');
 		return $db->query ($select)->fetchAll();
 	}
+	
+	public static function getUsers(){
+		$db = Zend_Db_Table::getDefaultAdapter();
+		$select = "select a.login as login, a.name as name, a.institution as institution, a.date as date, count(b.id) as solved 
+				from user a left outer join
+				bestsubmission b on a.id=b.user 
+				group by a.login, a.name, a.institution, a.date
+				order by name";
+		
+		return $db->query ($select)->fetchAll();
+		
+	}
 }
 
