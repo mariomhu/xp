@@ -9,15 +9,17 @@ class SubmissionController extends Zend_Controller_Action {
 		if($problema){
 			$this->view->problem = Application_Model_ProblemManager::get($problema);
 		}
-		if($_POST){
-			
+		if($_POST){			
+			$nome=explode('.', $_FILES['file']['name']);
+
 			if($_POST['language'] != 1 && $_POST['language'] != 2) return;
 				
 			$problem = Application_Model_ProblemManager::get($_POST['problem']);
 			if(!$problem){
 				$this->view->error = "This problem does not exist.";
-			}else{
-				
+			}elseif($nome['0'] != $problem['title']){				
+				$this->view->error = 'The name of the Source File Name should be '.$problem['title'];
+			}else{				
 				Application_Model_SubmissionManager::add(array(
 					'problem' => $problem['id'],
 					'user' => $user['id'],
